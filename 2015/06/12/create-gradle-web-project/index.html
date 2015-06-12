@@ -3,18 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>新纪元 | 色彩与火焰</title>
+  <title>create gradle web project | 色彩与火焰</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="移植blog第一次使用本地blog看看感受什么样？总不至于很落伍就对了。">
+  <meta name="description" content="创建一个gradle管理的web项目使用普通的eclipse创建
+配置第三方库123repositories &amp;#123;    mavenCentral()&amp;#125;
+使用maven本地配置，也可以使用第三方库，由于速度原因，我们选择了oscchina的maven镜像
+12345repositories &amp;#123;    maven &amp;#123;      url &quot;http://maven">
 <meta property="og:type" content="article">
-<meta property="og:title" content="新纪元">
-<meta property="og:url" content="http://yoursite.com/2015/06/11/新纪元/index.html">
+<meta property="og:title" content="create gradle web project">
+<meta property="og:url" content="http://yoursite.com/2015/06/12/create-gradle-web-project/index.html">
 <meta property="og:site_name" content="色彩与火焰">
-<meta property="og:description" content="移植blog第一次使用本地blog看看感受什么样？总不至于很落伍就对了。">
-<meta property="og:updated_time" content="2015-06-11T06:01:55.000Z">
+<meta property="og:description" content="创建一个gradle管理的web项目使用普通的eclipse创建
+配置第三方库123repositories &amp;#123;    mavenCentral()&amp;#125;
+使用maven本地配置，也可以使用第三方库，由于速度原因，我们选择了oscchina的maven镜像
+12345repositories &amp;#123;    maven &amp;#123;      url &quot;http://maven">
+<meta property="og:updated_time" content="2015-06-12T14:35:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="新纪元">
-<meta name="twitter:description" content="移植blog第一次使用本地blog看看感受什么样？总不至于很落伍就对了。">
+<meta name="twitter:title" content="create gradle web project">
+<meta name="twitter:description" content="创建一个gradle管理的web项目使用普通的eclipse创建
+配置第三方库123repositories &amp;#123;    mavenCentral()&amp;#125;
+使用maven本地配置，也可以使用第三方库，由于速度原因，我们选择了oscchina的maven镜像
+12345repositories &amp;#123;    maven &amp;#123;      url &quot;http://maven">
   
     <link rel="alternative" href="/atom.xml" title="色彩与火焰" type="application/atom+xml">
   
@@ -194,11 +203,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-新纪元" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-create-gradle-web-project" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/06/11/新纪元/" class="article-date">
-  	<time datetime="2015-06-11T03:47:27.000Z" itemprop="datePublished">2015-06-11</time>
+      <a href="/2015/06/12/create-gradle-web-project/" class="article-date">
+  	<time datetime="2015-06-12T02:45:10.000Z" itemprop="datePublished">2015-06-12</time>
 </a>
     </div>
   
@@ -211,7 +220,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      新纪元
+      create gradle web project
     </h1>
   
 
@@ -219,7 +228,15 @@
       
       <div class="article-info article-info-post">
         
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gradle/">gradle</a></li></ul>
+	</div>
+
         
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/web/">web</a>
+	</div>
+
 
         <div class="clearfix"></div>
       </div>
@@ -227,7 +244,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="移植blog">移植blog</h3><p>第一次使用本地blog看看感受什么样？<br>总不至于很落伍就对了。</p>
+        <h3 id="创建一个gradle管理的web项目">创建一个gradle管理的web项目</h3><p>使用普通的eclipse创建</p>
+<h3 id="配置第三方库">配置第三方库</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">repositories &#123;</span><br><span class="line">    mavenCentral()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用maven本地配置，也可以使用第三方库，由于速度原因，我们选择了oscchina的maven镜像</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">repositories &#123;</span><br><span class="line">    maven &#123;</span><br><span class="line">      url "http://maven.oschina.net/content/groups/public/"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -237,15 +257,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/06/11/ERROR-Deployer-not-found-git/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          ERROR Deployer not found: git
-        
-      </div>
-    </a>
   
+    <a href="/2015/06/11/ERROR-Deployer-not-found-git/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ERROR Deployer not found: git</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 
@@ -272,7 +288,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="新纪元" data-title="新纪元" data-url="http://yoursite.com/2015/06/11/新纪元/"></div>
+	<div class="ds-thread" data-thread-key="create-gradle-web-project" data-title="create gradle web project" data-url="http://yoursite.com/2015/06/12/create-gradle-web-project/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

@@ -113,7 +113,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+						<a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
 					</div>
 				</section>
 				
@@ -194,6 +194,66 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-create-gradle-web-project" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/06/12/create-gradle-web-project/" class="article-date">
+  	<time datetime="2015-06-12T02:45:10.000Z" itemprop="datePublished">2015-06-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/06/12/create-gradle-web-project/">create gradle web project</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="创建一个gradle管理的web项目">创建一个gradle管理的web项目</h3><p>使用普通的eclipse创建</p>
+<h3 id="配置第三方库">配置第三方库</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">repositories &#123;</span><br><span class="line">    mavenCentral()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用maven本地配置，也可以使用第三方库，由于速度原因，我们选择了oscchina的maven镜像</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">repositories &#123;</span><br><span class="line">    maven &#123;</span><br><span class="line">      url "http://maven.oschina.net/content/groups/public/"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gradle/">gradle</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/web/">web</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-ERROR-Deployer-not-found-git" class="article article-type-post" itemscope itemprop="blogPost">
   
