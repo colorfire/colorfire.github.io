@@ -3,18 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>新纪元 | 色彩与火焰</title>
+  <title>跨域请求时session的获取 | 色彩与火焰</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="移植blog第一次使用本地blog看看感受什么样？总不至于很落伍就对了。">
+  <meta name="description" content="服务器端访问设置参数配置Access-Control-Allow-Origin，设置允许访问的客户端地址。支持米字符但需要注意的是如果设置，会导致session无法获取，所以只能设置为客户端域名。Access-Control-Allow-Credentials，同时需要打开访问认证，默认情况下是关闭的。
+前端请求模拟跨域访问，只需要不同的接口即可，所以在本地调试也是可以的。123456789101">
 <meta property="og:type" content="article">
-<meta property="og:title" content="新纪元">
-<meta property="og:url" content="http://yoursite.com/2015/06/11/新纪元/index.html">
+<meta property="og:title" content="跨域请求时session的获取">
+<meta property="og:url" content="http://yoursite.com/2015/06/17/跨域请求时session的获取/index.html">
 <meta property="og:site_name" content="色彩与火焰">
-<meta property="og:description" content="移植blog第一次使用本地blog看看感受什么样？总不至于很落伍就对了。">
-<meta property="og:updated_time" content="2015-06-11T06:01:55.000Z">
+<meta property="og:description" content="服务器端访问设置参数配置Access-Control-Allow-Origin，设置允许访问的客户端地址。支持米字符但需要注意的是如果设置，会导致session无法获取，所以只能设置为客户端域名。Access-Control-Allow-Credentials，同时需要打开访问认证，默认情况下是关闭的。
+前端请求模拟跨域访问，只需要不同的接口即可，所以在本地调试也是可以的。123456789101">
+<meta property="og:updated_time" content="2015-06-17T11:12:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="新纪元">
-<meta name="twitter:description" content="移植blog第一次使用本地blog看看感受什么样？总不至于很落伍就对了。">
+<meta name="twitter:title" content="跨域请求时session的获取">
+<meta name="twitter:description" content="服务器端访问设置参数配置Access-Control-Allow-Origin，设置允许访问的客户端地址。支持米字符但需要注意的是如果设置，会导致session无法获取，所以只能设置为客户端域名。Access-Control-Allow-Credentials，同时需要打开访问认证，默认情况下是关闭的。
+前端请求模拟跨域访问，只需要不同的接口即可，所以在本地调试也是可以的。123456789101">
   
     <link rel="alternative" href="/atom.xml" title="色彩与火焰" type="application/atom+xml">
   
@@ -194,11 +197,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-新纪元" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-跨域请求时session的获取" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/06/11/新纪元/" class="article-date">
-  	<time datetime="2015-06-11T03:47:27.000Z" itemprop="datePublished">2015-06-11</time>
+      <a href="/2015/06/17/跨域请求时session的获取/" class="article-date">
+  	<time datetime="2015-06-17T10:16:47.000Z" itemprop="datePublished">2015-06-17</time>
 </a>
     </div>
   
@@ -211,7 +214,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      新纪元
+      跨域请求时session的获取
     </h1>
   
 
@@ -219,7 +222,15 @@
       
       <div class="article-info article-info-post">
         
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ajax/">ajax</a></li></ul>
+	</div>
+
         
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/前端/">前端</a>
+	</div>
+
 
         <div class="clearfix"></div>
       </div>
@@ -227,7 +238,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="移植blog">移植blog</h3><p>第一次使用本地blog看看感受什么样？<br>总不至于很落伍就对了。</p>
+        <h2 id="服务器端访问设置">服务器端访问设置</h2><p>参数配置<br>Access-Control-Allow-Origin，设置允许访问的客户端地址。<em>支持米字符但需要注意的是如果设置，会导致session无法获取，所以只能设置为客户端域名。</em><br>Access-Control-Allow-Credentials，同时需要打开访问认证，默认情况下是关闭的。</p>
+<h2 id="前端请求">前端请求</h2><p>模拟跨域访问，只需要不同的接口即可，所以在本地调试也是可以的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#post-btn"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  $.ajax(&#123;</span><br><span class="line">    type: <span class="string">"POST"</span>,</span><br><span class="line">    url: <span class="string">"http://123.57.3.86:7777"</span>,</span><br><span class="line">    <span class="comment">//url: "http://127.0.0.1:7777",</span></span><br><span class="line">    dataType: <span class="string">'application/x-www-form-urlencoded'</span>,</span><br><span class="line">    xhrFields: &#123;</span><br><span class="line">      withCredentials: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    crossDomain: <span class="literal">true</span>,</span><br><span class="line">    beforeSend: <span class="function"><span class="keyword">function</span>(<span class="params">xhr</span>) </span>&#123;</span><br><span class="line">      xhr.setRequestHeader(<span class="string">"Cookie"</span>, <span class="string">"pageAccess=2"</span>);</span><br><span class="line">      xhr.setRequestHeader(<span class="string">"Access-Control-Request-Headers"</span>, <span class="string">"Cookie"</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">data, status, xhr</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(xhr.getAllResponseHeaders());</span><br><span class="line">      alert(<span class="string">'success'</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    error: <span class="function"><span class="keyword">function</span>(<span class="params">xhr</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(xhr.getResponseHeader(<span class="string">'Cookie'</span>));</span><br><span class="line">      alert(<span class="string">'error'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="注意事项">注意事项</h2><p>需要注意的是webkit内核的浏览器并不支持跨域的header数据访问，例如cookie。像是chrome或者safari会禁止读取认为是非法的返回请求。</p>
 
       
     </div>
@@ -237,15 +250,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/06/11/ERROR-Deployer-not-found-git/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          ERROR Deployer not found: git
-        
-      </div>
-    </a>
   
+    <a href="/2015/06/12/create-gradle-web-project/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">create gradle web project</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 
@@ -272,7 +281,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="新纪元" data-title="新纪元" data-url="http://yoursite.com/2015/06/11/新纪元/"></div>
+	<div class="ds-thread" data-thread-key="跨域请求时session的获取" data-title="跨域请求时session的获取" data-url="http://yoursite.com/2015/06/17/跨域请求时session的获取/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
