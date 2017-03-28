@@ -3,27 +3,33 @@
 <head>
   <meta charset="utf-8">
   
-  <title>create gradle web project | 色彩与火焰</title>
+  <title>hexo+github 快速搭建手册 | 色彩与火焰</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="创建一个gradle管理的web项目使用普通的eclipse创建
-配置第三方库123repositories &amp;#123;    mavenCentral()&amp;#125;
-使用maven本地配置，也可以使用第三方库，由于速度原因，我们选择了oscchina的maven镜像
-12345repositories &amp;#123;    maven &amp;#123;      url &quot;http://maven">
+  <meta name="description" content="快速搭建
+Node v0.12.4
+Git 2.7.4
+Hexo 3.1.1
+
+配置hexo命令列表:1// 1. &amp;#23433;&amp;#35013;&amp;#10;sudo npm install -g hexo&amp;#10;&amp;#10;// 2. &amp;#21021;&amp;#22987;&amp;#21270;&amp;#10;hexo init&amp;#10;npm install // &amp;#23433;&amp;#35013;&amp;#32452">
 <meta property="og:type" content="article">
-<meta property="og:title" content="create gradle web project">
-<meta property="og:url" content="http://yoursite.com/2015/06/12/create-gradle-web-project/index.html">
+<meta property="og:title" content="hexo+github 快速搭建手册">
+<meta property="og:url" content="http://yoursite.com/2017/03/28/hexo-blog-guide/index.html">
 <meta property="og:site_name" content="色彩与火焰">
-<meta property="og:description" content="创建一个gradle管理的web项目使用普通的eclipse创建
-配置第三方库123repositories &amp;#123;    mavenCentral()&amp;#125;
-使用maven本地配置，也可以使用第三方库，由于速度原因，我们选择了oscchina的maven镜像
-12345repositories &amp;#123;    maven &amp;#123;      url &quot;http://maven">
-<meta property="og:updated_time" content="2015-06-17T15:31:24.000Z">
+<meta property="og:description" content="快速搭建
+Node v0.12.4
+Git 2.7.4
+Hexo 3.1.1
+
+配置hexo命令列表:1// 1. &amp;#23433;&amp;#35013;&amp;#10;sudo npm install -g hexo&amp;#10;&amp;#10;// 2. &amp;#21021;&amp;#22987;&amp;#21270;&amp;#10;hexo init&amp;#10;npm install // &amp;#23433;&amp;#35013;&amp;#32452">
+<meta property="og:updated_time" content="2017-03-28T13:32:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="create gradle web project">
-<meta name="twitter:description" content="创建一个gradle管理的web项目使用普通的eclipse创建
-配置第三方库123repositories &amp;#123;    mavenCentral()&amp;#125;
-使用maven本地配置，也可以使用第三方库，由于速度原因，我们选择了oscchina的maven镜像
-12345repositories &amp;#123;    maven &amp;#123;      url &quot;http://maven">
+<meta name="twitter:title" content="hexo+github 快速搭建手册">
+<meta name="twitter:description" content="快速搭建
+Node v0.12.4
+Git 2.7.4
+Hexo 3.1.1
+
+配置hexo命令列表:1// 1. &amp;#23433;&amp;#35013;&amp;#10;sudo npm install -g hexo&amp;#10;&amp;#10;// 2. &amp;#21021;&amp;#22987;&amp;#21270;&amp;#10;hexo init&amp;#10;npm install // &amp;#23433;&amp;#35013;&amp;#32452">
   
     <link rel="alternative" href="/atom.xml" title="色彩与火焰" type="application/atom+xml">
   
@@ -203,11 +209,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-create-gradle-web-project" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-hexo-blog-guide" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/06/12/create-gradle-web-project/" class="article-date">
-  	<time datetime="2015-06-12T02:45:10.000Z" itemprop="datePublished">2015-06-12</time>
+      <a href="/2017/03/28/hexo-blog-guide/" class="article-date">
+  	<time datetime="2017-03-28T13:00:48.000Z" itemprop="datePublished">2017-03-28</time>
 </a>
     </div>
   
@@ -220,7 +226,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      create gradle web project
+      hexo+github 快速搭建手册
     </h1>
   
 
@@ -229,12 +235,12 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gradle/">gradle</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
 	</div>
 
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/java/">java</a>
+	<a class="article-category-link" href="/categories/Blog/">Blog</a>
 	</div>
 
 
@@ -244,10 +250,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="创建一个gradle管理的web项目">创建一个gradle管理的web项目</h3><p>使用普通的eclipse创建</p>
-<h3 id="配置第三方库">配置第三方库</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">repositories &#123;</span><br><span class="line">    mavenCentral()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用maven本地配置，也可以使用第三方库，由于速度原因，我们选择了oscchina的maven镜像</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">repositories &#123;</span><br><span class="line">    maven &#123;</span><br><span class="line">      url "http://maven.oschina.net/content/groups/public/"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="快速搭建">快速搭建</h1><ul>
+<li>Node v0.12.4</li>
+<li>Git 2.7.4</li>
+<li>Hexo 3.1.1</li>
+</ul>
+<h2 id="配置hexo">配置hexo</h2><p>命令列表:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 1. &#23433;&#35013;&#10;sudo npm install -g hexo&#10;&#10;// 2. &#21021;&#22987;&#21270;&#10;hexo init&#10;npm install // &#23433;&#35013;&#32452;&#20214;&#10;&#10;// 3. &#29983;&#25104;&#38745;&#24577;&#39029;&#38754;&#10;hexo generate&#10;&#10;// 4. &#21551;&#21160;&#38745;&#24577;&#26381;&#21153;&#10;hexo server</span><br></pre></td></tr></table></figure></p>
+<p>目录结构<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── <span class="tag">_config</span><span class="class">.yml</span> (配置文件，很多全局配置都在这个文件中)</span><br><span class="line">├── <span class="tag">package</span><span class="class">.json</span> (应用数据。从它可以看出hexo版本信息，以及它所默认或者说依赖的一些组件)</span><br><span class="line">├── <span class="tag">scaffolds</span>/ (模版文件)</span><br><span class="line">├── <span class="tag">scripts</span>/ (放脚本的文件夹)</span><br><span class="line">├── <span class="tag">source</span>/ (文章目录)</span><br><span class="line">|   ├── <span class="tag">_drafts</span></span><br><span class="line">|   └── <span class="tag">_posts</span></span><br><span class="line">└── <span class="tag">themes</span>/ (主题)</span><br></pre></td></tr></table></figure></p>
+<h2 id="配置github">配置github</h2><p>建立与你用户名对应的仓库，仓库名必须为<em>your_user_name.github.io</em>,<br>修改配置文件_config.yml</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># Deployment (!&#20854;&#20182;&#19981;&#38656;&#35201;&#20462;&#25913;,&#21482;&#38656;&#35201;&#35843;&#25972;&#35813;&#26381;&#21153;)&#10;# Docs: http://hexo.io/docs/deployment.html&#10;deploy:&#10;  type: git&#10;  repository: git@github.com:yourname/yourname.github.io.git&#10;  branch: master</span><br></pre></td></tr></table></figure>
+<p>执行命令<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#37197;&#32622;&#29983;&#25928;&#10;npm install hexo-deployer-git --save&#10;// &#31449;&#28857;&#37096;&#32626;&#10;hexo deploy</span><br></pre></td></tr></table></figure></p>
+<h2 id="常用命令">常用命令</h2><ul>
+<li>hexo new “postName” 新建文章</li>
+<li>hexo new page”pageName” #新建页面</li>
+<li>hexo generate #生成静态页面至public目录</li>
+<li>hexo server #开启预览访问端口（默认端口4000，’ctrl + c’关闭server）</li>
+<li>hexo deploy #将deploy目录部署到GitHub</li>
+</ul>
+<blockquote>
+<p>参考:</p>
+<p><a href="http://www.ituring.com.cn/article/198930" target="_blank" rel="external">http://www.ituring.com.cn/article/198930</a></p>
+<p><a href="http://www.jianshu.com/p/465830080ea9" target="_blank" rel="external">http://www.jianshu.com/p/465830080ea9</a></p>
+</blockquote>
 
       
     </div>
@@ -257,18 +281,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/06/17/cors-session-request/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          跨域请求时session的获取
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/06/11/error-deployer-not-found-git/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">ERROR Deployer not found: git</div>
+    <a href="/2015/07/07/reading-book/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -297,7 +312,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="create-gradle-web-project" data-title="create gradle web project" data-url="http://yoursite.com/2015/06/12/create-gradle-web-project/"></div>
+	<div class="ds-thread" data-thread-key="hexo-blog-guide" data-title="hexo+github 快速搭建手册" data-url="http://yoursite.com/2017/03/28/hexo-blog-guide/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
