@@ -24,7 +24,7 @@ Git 2.7.4
 Hexo 3.1.1
 
 配置hexo命令列表:1// 1. &amp;#23433;&amp;#35013;&amp;#10;sudo npm install -g hexo&amp;#10;&amp;#10;// 2. &amp;#21021;&amp;#22987;&amp;#21270;&amp;#10;hexo init&amp;#10;npm install // &amp;#23433;&amp;#35013;&amp;#32452">
-<meta property="og:updated_time" content="2017-03-28T13:32:54.000Z">
+<meta property="og:updated_time" content="2017-04-11T14:02:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo+github 快速搭建手册">
 <meta name="twitter:description" content="快速搭建
@@ -88,6 +88,8 @@ ga('send', 'pageview');
 			
 				<li><a href="/">主页</a></li>
 	        
+				<li><a href="/categories/java/">Java</a></li>
+	        
 				<li><a href="/tags/随笔/">随笔</a></li>
 	        
 			</ul>
@@ -140,6 +142,8 @@ ga('send', 'pageview');
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -157,12 +161,14 @@ ga('send', 'pageview');
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 33.333333333333336%"><a href="/categories/java/">Java</a></li>
+		        
+					<li style="width: 33.333333333333336%"><a href="/tags/随笔/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -209,11 +215,20 @@ ga('send', 'pageview');
 <p>执行命令<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#37197;&#32622;&#29983;&#25928;&#10;npm install hexo-deployer-git --save&#10;// &#31449;&#28857;&#37096;&#32626;&#10;hexo deploy</span><br></pre></td></tr></table></figure></p>
 <h2 id="常用命令">常用命令</h2><ul>
 <li>hexo new “postName” 新建文章</li>
-<li>hexo new page”pageName” #新建页面</li>
+<li>hexo new page “pageName” #新建页面</li>
 <li>hexo generate #生成静态页面至public目录</li>
 <li>hexo server #开启预览访问端口（默认端口4000，’ctrl + c’关闭server）</li>
 <li>hexo deploy #将deploy目录部署到GitHub</li>
 </ul>
+<p><em>补充：</em></p>
+<ul>
+<li>hexo new draft “postName” 新建临时文稿 (不想要的文档也可以临时移动到draft目录下)</li>
+<li>hexo publish [layout] <filename> 发布文稿</filename></li>
+</ul>
+<h2 id="QA">QA</h2><ul>
+<li>异常处理’ERROR Deployer not found: git’<br>针对hexo3.0安装后部署github不成功的问题：<br><strong>修改配置</strong><br>hexo 更新到3.0之后，deploy的type中的github需要改成git。<br>yaml语法要求严格，注意空格。建议把github地址那条语句重新手写一遍，冒号后面要有一个空格。</li>
+</ul>
+<p><strong>更新部署</strong><br>安装针对3.0的部署器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>参考:</p>
 <p><a href="http://www.ituring.com.cn/article/198930" target="_blank" rel="external">http://www.ituring.com.cn/article/198930</a></p>
@@ -320,6 +335,15 @@ ga('send', 'pageview');
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/04/11/jvm-memory-model/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          JVM内存模型
+        
+      </div>
+    </a>
   
   
     <a href="/2015/07/07/reading-book/" id="article-nav-older" class="article-nav-link-wrap">

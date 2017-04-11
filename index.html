@@ -72,6 +72,8 @@ ga('send', 'pageview');
 			
 				<li><a href="/">主页</a></li>
 	        
+				<li><a href="/categories/java/">Java</a></li>
+	        
 				<li><a href="/tags/随笔/">随笔</a></li>
 	        
 			</ul>
@@ -124,6 +126,8 @@ ga('send', 'pageview');
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -141,12 +145,14 @@ ga('send', 'pageview');
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 33.333333333333336%"><a href="/categories/java/">Java</a></li>
+		        
+					<li style="width: 33.333333333333336%"><a href="/tags/随笔/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -162,6 +168,79 @@ ga('send', 'pageview');
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-jvm-memory-model" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/11/jvm-memory-model/">JVM内存模型</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/11/jvm-memory-model/" class="archive-article-date">
+  	<time datetime="2017-04-11T13:15:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="堆与非堆内存">堆与非堆内存</h1><p>堆与非堆内存<br><img src="/2017/04/11/jvm-memory-model/JVMMemoryModel.png" alt="memorymodel"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">基础</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java/" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/11/jvm-memory-model/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-hexo-blog-guide" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -195,11 +274,20 @@ ga('send', 'pageview');
 <p>执行命令<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#37197;&#32622;&#29983;&#25928;&#10;npm install hexo-deployer-git --save&#10;// &#31449;&#28857;&#37096;&#32626;&#10;hexo deploy</span><br></pre></td></tr></table></figure></p>
 <h2 id="常用命令">常用命令</h2><ul>
 <li>hexo new “postName” 新建文章</li>
-<li>hexo new page”pageName” #新建页面</li>
+<li>hexo new page “pageName” #新建页面</li>
 <li>hexo generate #生成静态页面至public目录</li>
 <li>hexo server #开启预览访问端口（默认端口4000，’ctrl + c’关闭server）</li>
 <li>hexo deploy #将deploy目录部署到GitHub</li>
 </ul>
+<p><em>补充：</em></p>
+<ul>
+<li>hexo new draft “postName” 新建临时文稿 (不想要的文档也可以临时移动到draft目录下)</li>
+<li>hexo publish [layout] <filename> 发布文稿</filename></li>
+</ul>
+<h2 id="QA">QA</h2><ul>
+<li>异常处理’ERROR Deployer not found: git’<br>针对hexo3.0安装后部署github不成功的问题：<br><strong>修改配置</strong><br>hexo 更新到3.0之后，deploy的type中的github需要改成git。<br>yaml语法要求严格，注意空格。建议把github地址那条语句重新手写一遍，冒号后面要有一个空格。</li>
+</ul>
+<p><strong>更新部署</strong><br>安装针对3.0的部署器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>参考:</p>
 <p><a href="http://www.ituring.com.cn/article/198930" target="_blank" rel="external">http://www.ituring.com.cn/article/198930</a></p>
@@ -288,6 +376,9 @@ ga('send', 'pageview');
         <p>买到kindle还是很有效果的，至少把三体看完了</p>
 <h3 id="三体">三体</h3><p>2015-6-28读完</p>
 <h3 id="从零到一，开启商业与未来的秘密">从零到一，开启商业与未来的秘密</h3><p>2015-7-7读完</p>
+<h3 id="未来简史">未来简史</h3><p>2017-2月 读完</p>
+<h3 id="把时间当做朋友">把时间当做朋友</h3><p>2017-3月 读完</p>
+<h3 id="菊与刀">菊与刀</h3><p>2017-3月 读中</p>
 
       
 
@@ -573,7 +664,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/06/12/create-gradle-web-project/">create gradle web project</a>
+      <a class="article-title" href="/2015/06/12/create-gradle-web-project/">创建Gradle项目</a>
     </h1>
   
 
@@ -649,7 +740,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/06/11/error-deployer-not-found-git/">ERROR Deployer not found: git</a>
+      <a class="article-title" href="/2015/06/11/error-deployer-not-found-git/">异常处理&#39;ERROR Deployer not found:git&#39;</a>
     </h1>
   
 
