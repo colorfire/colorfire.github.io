@@ -5,22 +5,20 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="http://colorfire.in">
   <title>跨域请求时session的获取 | 色彩与火焰</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="服务器端访问设置参数配置Access-Control-Allow-Origin，设置允许访问的客户端地址。支持米字符但需要注意的是如果设置，会导致session无法获取，所以只能设置为客户端域名。Access-Control-Allow-Credentials，同时需要打开访问认证，默认情况下是关闭的。
-前端请求模拟跨域访问，只需要不同的接口即可，所以在本地调试也是可以的。123456789101">
+  <meta name="description" content="服务器端访问设置参数配置Access-Control-Allow-Origin，设置允许访问的客户端地址。支持米字符但需要注意的是如果设置，会导致session无法获取，所以只能设置为客户端域名。Access-Control-Allow-Credentials，同时需要打开访问认证，默认情况下是关闭的。 前端请求模拟跨域访问，只需要不同的接口即可，所以在本地调试也是可以的。123456789101">
+<meta name="keywords" content="ajax">
 <meta property="og:type" content="article">
 <meta property="og:title" content="跨域请求时session的获取">
-<meta property="og:url" content="http://yoursite.com/2015/06/17/cors-session-request/index.html">
+<meta property="og:url" content="http://colorfire.in/2015/06/17/cors-session-request/index.html">
 <meta property="og:site_name" content="色彩与火焰">
-<meta property="og:description" content="服务器端访问设置参数配置Access-Control-Allow-Origin，设置允许访问的客户端地址。支持米字符但需要注意的是如果设置，会导致session无法获取，所以只能设置为客户端域名。Access-Control-Allow-Credentials，同时需要打开访问认证，默认情况下是关闭的。
-前端请求模拟跨域访问，只需要不同的接口即可，所以在本地调试也是可以的。123456789101">
+<meta property="og:description" content="服务器端访问设置参数配置Access-Control-Allow-Origin，设置允许访问的客户端地址。支持米字符但需要注意的是如果设置，会导致session无法获取，所以只能设置为客户端域名。Access-Control-Allow-Credentials，同时需要打开访问认证，默认情况下是关闭的。 前端请求模拟跨域访问，只需要不同的接口即可，所以在本地调试也是可以的。123456789101">
 <meta property="og:updated_time" content="2015-06-17T15:32:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="跨域请求时session的获取">
-<meta name="twitter:description" content="服务器端访问设置参数配置Access-Control-Allow-Origin，设置允许访问的客户端地址。支持米字符但需要注意的是如果设置，会导致session无法获取，所以只能设置为客户端域名。Access-Control-Allow-Credentials，同时需要打开访问认证，默认情况下是关闭的。
-前端请求模拟跨域访问，只需要不同的接口即可，所以在本地调试也是可以的。123456789101">
+<meta name="twitter:description" content="服务器端访问设置参数配置Access-Control-Allow-Origin，设置允许访问的客户端地址。支持米字符但需要注意的是如果设置，会导致session无法获取，所以只能设置为客户端域名。Access-Control-Allow-Credentials，同时需要打开访问认证，默认情况下是关闭的。 前端请求模拟跨域访问，只需要不同的接口即可，所以在本地调试也是可以的。123456789101">
   
     <link rel="alternative" href="/atom.xml" title="色彩与火焰" type="application/atom+xml">
   
@@ -92,13 +90,13 @@ ga('send', 'pageview');
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="/#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="/#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="rss" target="_blank" href="/#" title="rss"><i class="icon-rss"></i></a>
+					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="/#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 			</div>
 		</nav>
@@ -137,13 +135,13 @@ ga('send', 'pageview');
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="/#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="/#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="rss" target="_blank" href="/#" title="rss"><i class="icon-rss"></i></a>
+						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 			        
-						<a class="zhihu" target="_blank" href="/#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 				</div>
 			</nav>
@@ -191,9 +189,9 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="服务器端访问设置">服务器端访问设置</h2><p>参数配置<br>Access-Control-Allow-Origin，设置允许访问的客户端地址。<em>支持米字符但需要注意的是如果设置，会导致session无法获取，所以只能设置为客户端域名。</em><br>Access-Control-Allow-Credentials，同时需要打开访问认证，默认情况下是关闭的。</p>
-<h2 id="前端请求">前端请求</h2><p>模拟跨域访问，只需要不同的接口即可，所以在本地调试也是可以的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#post-btn"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  $.ajax(&#123;</span><br><span class="line">    type: <span class="string">"POST"</span>,</span><br><span class="line">    url: <span class="string">"http://123.57.3.86:7777"</span>,</span><br><span class="line">    <span class="comment">//url: "http://127.0.0.1:7777",</span></span><br><span class="line">    dataType: <span class="string">'application/x-www-form-urlencoded'</span>,</span><br><span class="line">    xhrFields: &#123;</span><br><span class="line">      withCredentials: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    crossDomain: <span class="literal">true</span>,</span><br><span class="line">    beforeSend: <span class="function"><span class="keyword">function</span>(<span class="params">xhr</span>) </span>&#123;</span><br><span class="line">      xhr.setRequestHeader(<span class="string">"Cookie"</span>, <span class="string">"pageAccess=2"</span>);</span><br><span class="line">      xhr.setRequestHeader(<span class="string">"Access-Control-Request-Headers"</span>, <span class="string">"Cookie"</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">data, status, xhr</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(xhr.getAllResponseHeaders());</span><br><span class="line">      alert(<span class="string">'success'</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    error: <span class="function"><span class="keyword">function</span>(<span class="params">xhr</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(xhr.getResponseHeader(<span class="string">'Cookie'</span>));</span><br><span class="line">      alert(<span class="string">'error'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<h2 id="注意事项">注意事项</h2><p>需要注意的是webkit内核的浏览器并不支持跨域的header数据访问，例如cookie。像是chrome或者safari会禁止读取认为是非法的返回请求。</p>
+        <h2 id="服务器端访问设置"><a href="#服务器端访问设置" class="headerlink" title="服务器端访问设置"></a>服务器端访问设置</h2><p>参数配置<br>Access-Control-Allow-Origin，设置允许访问的客户端地址。<em>支持米字符但需要注意的是如果设置，会导致session无法获取，所以只能设置为客户端域名。</em><br>Access-Control-Allow-Credentials，同时需要打开访问认证，默认情况下是关闭的。</p>
+<h2 id="前端请求"><a href="#前端请求" class="headerlink" title="前端请求"></a>前端请求</h2><p>模拟跨域访问，只需要不同的接口即可，所以在本地调试也是可以的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#post-btn"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  $.ajax(&#123;</div><div class="line">    <span class="attr">type</span>: <span class="string">"POST"</span>,</div><div class="line">    <span class="attr">url</span>: <span class="string">"http://123.57.3.86:7777"</span>,</div><div class="line">    <span class="comment">//url: "http://127.0.0.1:7777",</span></div><div class="line">    dataType: <span class="string">'application/x-www-form-urlencoded'</span>,</div><div class="line">    <span class="attr">xhrFields</span>: &#123;</div><div class="line">      <span class="attr">withCredentials</span>: <span class="literal">true</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">crossDomain</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">beforeSend</span>: <span class="function"><span class="keyword">function</span>(<span class="params">xhr</span>) </span>&#123;</div><div class="line">      xhr.setRequestHeader(<span class="string">"Cookie"</span>, <span class="string">"pageAccess=2"</span>);</div><div class="line">      xhr.setRequestHeader(<span class="string">"Access-Control-Request-Headers"</span>, <span class="string">"Cookie"</span>);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">data, status, xhr</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(xhr.getAllResponseHeaders());</div><div class="line">      alert(<span class="string">'success'</span>);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">error</span>: <span class="function"><span class="keyword">function</span>(<span class="params">xhr</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(xhr.getResponseHeader(<span class="string">'Cookie'</span>));</div><div class="line">      alert(<span class="string">'error'</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>需要注意的是webkit内核的浏览器并不支持跨域的header数据访问，例如cookie。像是chrome或者safari会禁止读取认为是非法的返回请求。</p>
 <blockquote>
 <p>引用：<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Simple_requests" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Simple_requests</a></p>
 </blockquote>
@@ -277,7 +275,7 @@ ga('send', 'pageview');
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2015/06/17/cors-session-request/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://colorfire.in/2015/06/17/cors-session-request/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -291,18 +289,18 @@ ga('send', 'pageview');
   
 <nav id="article-nav">
   
-    <a href="/2015/06/17/markdown-cheatsheet/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/06/12/create-gradle-web-project/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Markdown语法速查
+          创建Gradle项目
         
       </div>
     </a>
   
   
-    <a href="/2015/06/12/create-gradle-web-project/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">创建Gradle项目</div>
+    <a href="/2015/06/17/markdown-cheatsheet/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Markdown语法速查</div>
       <i class="icon-circle-right"></i>
     </a>
   

@@ -5,13 +5,13 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="http://colorfire.in">
   <title>色彩与火焰</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="技术宅、游泳爱好者、摄影入门党、娃控">
 <meta property="og:type" content="website">
 <meta property="og:title" content="色彩与火焰">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://colorfire.in/index.html">
 <meta property="og:site_name" content="色彩与火焰">
 <meta property="og:description" content="技术宅、游泳爱好者、摄影入门党、娃控">
 <meta name="twitter:card" content="summary">
@@ -88,13 +88,13 @@ ga('send', 'pageview');
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="/#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="/#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="rss" target="_blank" href="/#" title="rss"><i class="icon-rss"></i></a>
+					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="/#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 			</div>
 		</nav>
@@ -133,13 +133,13 @@ ga('send', 'pageview');
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="/#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="/#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="rss" target="_blank" href="/#" title="rss"><i class="icon-rss"></i></a>
+						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 			        
-						<a class="zhihu" target="_blank" href="/#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 				</div>
 			</nav>
@@ -189,7 +189,34 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="堆与非堆内存">堆与非堆内存</h1><p>堆与非堆内存<br><img src="/2017/04/11/jvm-memory-model/JVMMemoryModel.png" alt="memorymodel"></p>
+        <h1 id="1-堆与非堆内存"><a href="#1-堆与非堆内存" class="headerlink" title="1. 堆与非堆内存"></a>1. 堆与非堆内存</h1><p><img src="/2017/04/11/jvm-memory-model/JVMMemoryModel.png" alt="model"></p>
+<table>
+<thead>
+<tr>
+<th>Heap 堆区</th>
+<th>No-Heap 非堆区</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Young Generation 新生代/ Old Generation 旧生代</td>
+<td>Method Area 方法区/ Thread Area 线程区</td>
+</tr>
+<tr>
+<td>其中新生代又分为: Eden区/Survivor区</td>
+<td>线程区分为: VM Stack 虚拟机栈/ Native Method Stack 本地方法栈/ Program Counter 计数器</td>
+</tr>
+</tbody>
+</table>
+<p><em>其中Heap区域作为垃圾回收的主要操作空间，以及解释下为什么Survivor会有两个？</em></p>
+<blockquote>
+<p>大的对象直接进入旧生代</p>
+</blockquote>
+<h1 id="2-垃圾回收"><a href="#2-垃圾回收" class="headerlink" title="2. 垃圾回收"></a>2. 垃圾回收</h1><p>Heap堆内存分为新生代、老生代，比例1：2<br>新生代又分为Eden区和Survivor区，比例8：1：1；Eden区放新生对象、Survivor区放回收后存活的对象。</p>
+<h2 id="回收步骤"><a href="#回收步骤" class="headerlink" title="回收步骤"></a>回收步骤</h2><p><strong>标记整理清除:</strong> 先标记回收对象，然后再清除。会产生碎片。适用于存活对象多、回收对象少。<br><strong>复制清除:</strong> 先复制在清除，但复制的效率较低、占用较大内存。适用于存活对象少、回收对象多。<br><strong>分代回收:</strong> 新生代采用复制清除、老年代使用标记整理清除。这就是为什么分为两代区域保存，其中新生代又Eden空间和Survivor空间，并且比例是8:1:1，</p>
+<p>所以，需要有两个Survivor区域用来复制保留的对象。</p>
+<p><strong>举例</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// 分配了一个又一个对象</div><div class="line">放到Eden区</div><div class="line">// 不好，Eden区满了，只能GC(新生代GC：Minor GC)了</div><div class="line">把Eden区的存活对象copy到Survivor A区，然后清空Eden区（本来Survivor B区也需要清空的，不过本来就是空的）</div><div class="line">// 又分配了一个又一个对象</div><div class="line">放到Eden区</div><div class="line">// 不好，Eden区又满了，只能GC(新生代GC：Minor GC)了</div><div class="line">把Eden区和Survivor A区的存活对象copy到Survivor B区，然后清空Eden区和Survivor A区</div><div class="line">// 又分配了一个又一个对象</div><div class="line">放到Eden区</div><div class="line">// 不好，Eden区又满了，只能GC(新生代GC：Minor GC)了</div><div class="line">把Eden区和Survivor B区的存活对象copy到Survivor A区，然后清空Eden区和Survivor B区</div><div class="line">// ...</div><div class="line">// 有的对象来回在Survivor A区或者B区呆了比如15次，就被分配到老年代Old区</div><div class="line">// 有的对象太大，超过了Eden区，直接被分配在Old区</div><div class="line">// 有的存活对象，放不下Survivor区，也被分配到Old区</div><div class="line">// ...</div><div class="line">// 在某次Minor GC的过程中突然发现：</div><div class="line">// 不好，老年代Old区也满了，这是一次大GC(老年代GC：Major GC)</div><div class="line">Old区慢慢的整理一番，空间又够了</div><div class="line">// 继续Minor GC</div><div class="line">// ...</div><div class="line">// ...</div></pre></td></tr></table></figure></p>
+<h1 id="3-对象创建"><a href="#3-对象创建" class="headerlink" title="3.对象创建"></a>3.对象创建</h1><p>Object object = new Object();<br>首先是在Java方法栈中增加reference数据本地变量表，Java堆中保存实例化的对象，而相关的类型数据则保存在方法区。<br><img src="/2017/04/11/jvm-memory-model/javaObject.jpeg" alt="object"></p>
 
       
 
@@ -262,17 +289,17 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="快速搭建">快速搭建</h1><ul>
+        <h1 id="快速搭建"><a href="#快速搭建" class="headerlink" title="快速搭建"></a>快速搭建</h1><ul>
 <li>Node v0.12.4</li>
 <li>Git 2.7.4</li>
 <li>Hexo 3.1.1</li>
 </ul>
-<h2 id="配置hexo">配置hexo</h2><p>命令列表:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 1. &#23433;&#35013;&#10;sudo npm install -g hexo&#10;&#10;// 2. &#21021;&#22987;&#21270;&#10;hexo init&#10;npm install // &#23433;&#35013;&#32452;&#20214;&#10;&#10;// 3. &#29983;&#25104;&#38745;&#24577;&#39029;&#38754;&#10;hexo generate&#10;&#10;// 4. &#21551;&#21160;&#38745;&#24577;&#26381;&#21153;&#10;hexo server</span><br></pre></td></tr></table></figure></p>
-<p>目录结构<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── <span class="tag">_config</span><span class="class">.yml</span> (配置文件，很多全局配置都在这个文件中)</span><br><span class="line">├── <span class="tag">package</span><span class="class">.json</span> (应用数据。从它可以看出hexo版本信息，以及它所默认或者说依赖的一些组件)</span><br><span class="line">├── <span class="tag">scaffolds</span>/ (模版文件)</span><br><span class="line">├── <span class="tag">scripts</span>/ (放脚本的文件夹)</span><br><span class="line">├── <span class="tag">source</span>/ (文章目录)</span><br><span class="line">|   ├── <span class="tag">_drafts</span></span><br><span class="line">|   └── <span class="tag">_posts</span></span><br><span class="line">└── <span class="tag">themes</span>/ (主题)</span><br></pre></td></tr></table></figure></p>
-<h2 id="配置github">配置github</h2><p>建立与你用户名对应的仓库，仓库名必须为<em>your_user_name.github.io</em>,<br>修改配置文件_config.yml</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># Deployment (!&#20854;&#20182;&#19981;&#38656;&#35201;&#20462;&#25913;,&#21482;&#38656;&#35201;&#35843;&#25972;&#35813;&#26381;&#21153;)&#10;# Docs: http://hexo.io/docs/deployment.html&#10;deploy:&#10;  type: git&#10;  repository: git@github.com:yourname/yourname.github.io.git&#10;  branch: master</span><br></pre></td></tr></table></figure>
-<p>执行命令<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#37197;&#32622;&#29983;&#25928;&#10;npm install hexo-deployer-git --save&#10;// &#31449;&#28857;&#37096;&#32626;&#10;hexo deploy</span><br></pre></td></tr></table></figure></p>
-<h2 id="常用命令">常用命令</h2><ul>
+<h2 id="配置hexo"><a href="#配置hexo" class="headerlink" title="配置hexo"></a>配置hexo</h2><p>命令列表:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 1. 安装</div><div class="line">sudo npm install -g hexo</div><div class="line"></div><div class="line">// 2. 初始化</div><div class="line">hexo init</div><div class="line">npm install // 安装组件</div><div class="line"></div><div class="line">// 3. 生成静态页面</div><div class="line">hexo generate</div><div class="line"></div><div class="line">// 4. 启动静态服务</div><div class="line">hexo server</div></pre></td></tr></table></figure></p>
+<p>目录结构<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── <span class="selector-tag">_config</span><span class="selector-class">.yml</span> (配置文件，很多全局配置都在这个文件中)</div><div class="line">├── <span class="selector-tag">package</span><span class="selector-class">.json</span> (应用数据。从它可以看出hexo版本信息，以及它所默认或者说依赖的一些组件)</div><div class="line">├── <span class="selector-tag">scaffolds</span>/ (模版文件)</div><div class="line">├── <span class="selector-tag">scripts</span>/ (放脚本的文件夹)</div><div class="line">├── <span class="selector-tag">source</span>/ (文章目录)</div><div class="line">|   ├── <span class="selector-tag">_drafts</span></div><div class="line">|   └── <span class="selector-tag">_posts</span></div><div class="line">└── <span class="selector-tag">themes</span>/ (主题)</div></pre></td></tr></table></figure></p>
+<h2 id="配置github"><a href="#配置github" class="headerlink" title="配置github"></a>配置github</h2><p>建立与你用户名对应的仓库，仓库名必须为<em>your_user_name.github.io</em>,<br>修改配置文件_config.yml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># Deployment (!其他不需要修改,只需要调整该服务)</div><div class="line"># Docs: http://hexo.io/docs/deployment.html</div><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repository: git@github.com:yourname/yourname.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+<p>执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 配置生效</div><div class="line">npm install hexo-deployer-git --save</div><div class="line">// 站点部署</div><div class="line">hexo deploy</div></pre></td></tr></table></figure></p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
 <li>hexo new “postName” 新建文章</li>
 <li>hexo new page “pageName” #新建页面</li>
 <li>hexo generate #生成静态页面至public目录</li>
@@ -284,10 +311,10 @@ ga('send', 'pageview');
 <li>hexo new draft “postName” 新建临时文稿 (不想要的文档也可以临时移动到draft目录下)</li>
 <li>hexo publish [layout] <filename> 发布文稿</filename></li>
 </ul>
-<h2 id="QA">QA</h2><ul>
+<h2 id="QA"><a href="#QA" class="headerlink" title="QA"></a>QA</h2><ul>
 <li>异常处理’ERROR Deployer not found: git’<br>针对hexo3.0安装后部署github不成功的问题：<br><strong>修改配置</strong><br>hexo 更新到3.0之后，deploy的type中的github需要改成git。<br>yaml语法要求严格，注意空格。建议把github地址那条语句重新手写一遍，冒号后面要有一个空格。</li>
 </ul>
-<p><strong>更新部署</strong><br>安装针对3.0的部署器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
+<p><strong>更新部署</strong><br>安装针对3.0的部署器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
 <blockquote>
 <p>参考:</p>
 <p><a href="http://www.ituring.com.cn/article/198930" target="_blank" rel="external">http://www.ituring.com.cn/article/198930</a></p>
@@ -306,7 +333,7 @@ ga('send', 'pageview');
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Github</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Node</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -314,7 +341,7 @@ ga('send', 'pageview');
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Node</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Github</a>
         		</li>
       		
 		</ul>
@@ -374,11 +401,11 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>买到kindle还是很有效果的，至少把三体看完了</p>
-<h3 id="三体">三体</h3><p>2015-6-28读完</p>
-<h3 id="从零到一，开启商业与未来的秘密">从零到一，开启商业与未来的秘密</h3><p>2015-7-7读完</p>
-<h3 id="未来简史">未来简史</h3><p>2017-2月 读完</p>
-<h3 id="把时间当做朋友">把时间当做朋友</h3><p>2017-3月 读完</p>
-<h3 id="菊与刀">菊与刀</h3><p>2017-3月 读中</p>
+<h3 id="三体"><a href="#三体" class="headerlink" title="三体"></a>三体</h3><p>2015-6-28读完</p>
+<h3 id="从零到一，开启商业与未来的秘密"><a href="#从零到一，开启商业与未来的秘密" class="headerlink" title="从零到一，开启商业与未来的秘密"></a>从零到一，开启商业与未来的秘密</h3><p>2015-7-7读完</p>
+<h3 id="未来简史"><a href="#未来简史" class="headerlink" title="未来简史"></a>未来简史</h3><p>2017-2月 读完</p>
+<h3 id="把时间当做朋友"><a href="#把时间当做朋友" class="headerlink" title="把时间当做朋友"></a>把时间当做朋友</h3><p>2017-3月 读完</p>
+<h3 id="菊与刀"><a href="#菊与刀" class="headerlink" title="菊与刀"></a>菊与刀</h3><p>2017-3月 读中</p>
 
       
 
@@ -451,7 +478,7 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="选择IDE">选择IDE</h3><h3 id="安装sublime">安装sublime</h3><h3 id="常用配置以及代码格式化">常用配置以及代码格式化</h3><h3 id="插件的使用">插件的使用</h3><h3 id="快捷键&amp;进阶">快捷键&amp;进阶</h3>
+        <h3 id="选择IDE"><a href="#选择IDE" class="headerlink" title="选择IDE"></a>选择IDE</h3><h3 id="安装sublime"><a href="#安装sublime" class="headerlink" title="安装sublime"></a>安装sublime</h3><h3 id="常用配置以及代码格式化"><a href="#常用配置以及代码格式化" class="headerlink" title="常用配置以及代码格式化"></a>常用配置以及代码格式化</h3><h3 id="插件的使用"><a href="#插件的使用" class="headerlink" title="插件的使用"></a>插件的使用</h3><h3 id="快捷键-amp-进阶"><a href="#快捷键-amp-进阶" class="headerlink" title="快捷键&amp;进阶"></a>快捷键&amp;进阶</h3>
       
 
       
@@ -523,7 +550,7 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="语法速查">语法速查</h2><p><img src="http://7xjo2t.com1.z0.glb.clouddn.com/Markdown CheatSheet.png" alt="速查手册"></p>
+        <h2 id="语法速查"><a href="#语法速查" class="headerlink" title="语法速查"></a>语法速查</h2><p><img src="http://7xjo2t.com1.z0.glb.clouddn.com/Markdown CheatSheet.png" alt="速查手册"></p>
 <blockquote>
 <p>使用百度脑图生成</p>
 </blockquote>
@@ -599,9 +626,9 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="服务器端访问设置">服务器端访问设置</h2><p>参数配置<br>Access-Control-Allow-Origin，设置允许访问的客户端地址。<em>支持米字符但需要注意的是如果设置，会导致session无法获取，所以只能设置为客户端域名。</em><br>Access-Control-Allow-Credentials，同时需要打开访问认证，默认情况下是关闭的。</p>
-<h2 id="前端请求">前端请求</h2><p>模拟跨域访问，只需要不同的接口即可，所以在本地调试也是可以的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#post-btn"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  $.ajax(&#123;</span><br><span class="line">    type: <span class="string">"POST"</span>,</span><br><span class="line">    url: <span class="string">"http://123.57.3.86:7777"</span>,</span><br><span class="line">    <span class="comment">//url: "http://127.0.0.1:7777",</span></span><br><span class="line">    dataType: <span class="string">'application/x-www-form-urlencoded'</span>,</span><br><span class="line">    xhrFields: &#123;</span><br><span class="line">      withCredentials: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    crossDomain: <span class="literal">true</span>,</span><br><span class="line">    beforeSend: <span class="function"><span class="keyword">function</span>(<span class="params">xhr</span>) </span>&#123;</span><br><span class="line">      xhr.setRequestHeader(<span class="string">"Cookie"</span>, <span class="string">"pageAccess=2"</span>);</span><br><span class="line">      xhr.setRequestHeader(<span class="string">"Access-Control-Request-Headers"</span>, <span class="string">"Cookie"</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">data, status, xhr</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(xhr.getAllResponseHeaders());</span><br><span class="line">      alert(<span class="string">'success'</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    error: <span class="function"><span class="keyword">function</span>(<span class="params">xhr</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(xhr.getResponseHeader(<span class="string">'Cookie'</span>));</span><br><span class="line">      alert(<span class="string">'error'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<h2 id="注意事项">注意事项</h2><p>需要注意的是webkit内核的浏览器并不支持跨域的header数据访问，例如cookie。像是chrome或者safari会禁止读取认为是非法的返回请求。</p>
+        <h2 id="服务器端访问设置"><a href="#服务器端访问设置" class="headerlink" title="服务器端访问设置"></a>服务器端访问设置</h2><p>参数配置<br>Access-Control-Allow-Origin，设置允许访问的客户端地址。<em>支持米字符但需要注意的是如果设置，会导致session无法获取，所以只能设置为客户端域名。</em><br>Access-Control-Allow-Credentials，同时需要打开访问认证，默认情况下是关闭的。</p>
+<h2 id="前端请求"><a href="#前端请求" class="headerlink" title="前端请求"></a>前端请求</h2><p>模拟跨域访问，只需要不同的接口即可，所以在本地调试也是可以的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#post-btn"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  $.ajax(&#123;</div><div class="line">    <span class="attr">type</span>: <span class="string">"POST"</span>,</div><div class="line">    <span class="attr">url</span>: <span class="string">"http://123.57.3.86:7777"</span>,</div><div class="line">    <span class="comment">//url: "http://127.0.0.1:7777",</span></div><div class="line">    dataType: <span class="string">'application/x-www-form-urlencoded'</span>,</div><div class="line">    <span class="attr">xhrFields</span>: &#123;</div><div class="line">      <span class="attr">withCredentials</span>: <span class="literal">true</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">crossDomain</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">beforeSend</span>: <span class="function"><span class="keyword">function</span>(<span class="params">xhr</span>) </span>&#123;</div><div class="line">      xhr.setRequestHeader(<span class="string">"Cookie"</span>, <span class="string">"pageAccess=2"</span>);</div><div class="line">      xhr.setRequestHeader(<span class="string">"Access-Control-Request-Headers"</span>, <span class="string">"Cookie"</span>);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">data, status, xhr</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(xhr.getAllResponseHeaders());</div><div class="line">      alert(<span class="string">'success'</span>);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">error</span>: <span class="function"><span class="keyword">function</span>(<span class="params">xhr</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(xhr.getResponseHeader(<span class="string">'Cookie'</span>));</div><div class="line">      alert(<span class="string">'error'</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>需要注意的是webkit内核的浏览器并不支持跨域的header数据访问，例如cookie。像是chrome或者safari会禁止读取认为是非法的返回请求。</p>
 <blockquote>
 <p>引用：<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Simple_requests" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Simple_requests</a></p>
 </blockquote>
@@ -677,10 +704,10 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="创建一个gradle管理的web项目">创建一个gradle管理的web项目</h3><p>使用普通的eclipse创建</p>
-<h3 id="配置第三方库">配置第三方库</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">repositories &#123;</span><br><span class="line">    mavenCentral()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="创建一个gradle管理的web项目"><a href="#创建一个gradle管理的web项目" class="headerlink" title="创建一个gradle管理的web项目"></a>创建一个gradle管理的web项目</h3><p>使用普通的eclipse创建</p>
+<h3 id="配置第三方库"><a href="#配置第三方库" class="headerlink" title="配置第三方库"></a>配置第三方库</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">repositories &#123;</div><div class="line">    mavenCentral()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>使用maven本地配置，也可以使用第三方库，由于速度原因，我们选择了oscchina的maven镜像</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">repositories &#123;</span><br><span class="line">    maven &#123;</span><br><span class="line">      url "http://maven.oschina.net/content/groups/public/"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">repositories &#123;</div><div class="line">    maven &#123;</div><div class="line">      url "http://maven.oschina.net/content/groups/public/"</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
 
@@ -754,8 +781,8 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>针对hexo3.0安装后部署github不成功的问题：</p>
-<h3 id="修改配置">修改配置</h3><p>hexo 更新到3.0之后，deploy的type中的github需要改成git。<br>yaml语法要求严格，注意空格。建议把github地址那条语句重新手写一遍，冒号后面要有一个空格。</p>
-<h3 id="更新部署">更新部署</h3><p>安装针对3.0的部署器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
+<h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p>hexo 更新到3.0之后，deploy的type中的github需要改成git。<br>yaml语法要求严格，注意空格。建议把github地址那条语句重新手写一遍，冒号后面要有一个空格。</p>
+<h3 id="更新部署"><a href="#更新部署" class="headerlink" title="更新部署"></a>更新部署</h3><p>安装针对3.0的部署器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
 <p>以上</p>
 
       
@@ -829,7 +856,7 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="移植blog">移植blog</h3><p>第一次使用本地blog看看感受什么样？<br>总不至于很落伍就对了。</p>
+        <h3 id="移植blog"><a href="#移植blog" class="headerlink" title="移植blog"></a>移植blog</h3><p>第一次使用本地blog看看感受什么样？<br>总不至于很落伍就对了。</p>
 
       
 

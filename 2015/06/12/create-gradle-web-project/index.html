@@ -5,28 +5,20 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="http://colorfire.in">
   <title>创建Gradle项目 | 色彩与火焰</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="创建一个gradle管理的web项目使用普通的eclipse创建
-配置第三方库123repositories &amp;#123;    mavenCentral()&amp;#125;
-使用maven本地配置，也可以使用第三方库，由于速度原因，我们选择了oscchina的maven镜像
-12345repositories &amp;#123;    maven &amp;#123;      url &quot;http://maven">
+  <meta name="description" content="创建一个gradle管理的web项目使用普通的eclipse创建 配置第三方库123repositories &amp;#123;    mavenCentral()&amp;#125; 使用maven本地配置，也可以使用第三方库，由于速度原因，我们选择了oscchina的maven镜像 12345repositories &amp;#123;    maven &amp;#123;      url &quot;http://maven">
+<meta name="keywords" content="gradle">
 <meta property="og:type" content="article">
 <meta property="og:title" content="创建Gradle项目">
-<meta property="og:url" content="http://yoursite.com/2015/06/12/create-gradle-web-project/index.html">
+<meta property="og:url" content="http://colorfire.in/2015/06/12/create-gradle-web-project/index.html">
 <meta property="og:site_name" content="色彩与火焰">
-<meta property="og:description" content="创建一个gradle管理的web项目使用普通的eclipse创建
-配置第三方库123repositories &amp;#123;    mavenCentral()&amp;#125;
-使用maven本地配置，也可以使用第三方库，由于速度原因，我们选择了oscchina的maven镜像
-12345repositories &amp;#123;    maven &amp;#123;      url &quot;http://maven">
+<meta property="og:description" content="创建一个gradle管理的web项目使用普通的eclipse创建 配置第三方库123repositories &amp;#123;    mavenCentral()&amp;#125; 使用maven本地配置，也可以使用第三方库，由于速度原因，我们选择了oscchina的maven镜像 12345repositories &amp;#123;    maven &amp;#123;      url &quot;http://maven">
 <meta property="og:updated_time" content="2017-04-11T13:59:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="创建Gradle项目">
-<meta name="twitter:description" content="创建一个gradle管理的web项目使用普通的eclipse创建
-配置第三方库123repositories &amp;#123;    mavenCentral()&amp;#125;
-使用maven本地配置，也可以使用第三方库，由于速度原因，我们选择了oscchina的maven镜像
-12345repositories &amp;#123;    maven &amp;#123;      url &quot;http://maven">
+<meta name="twitter:description" content="创建一个gradle管理的web项目使用普通的eclipse创建 配置第三方库123repositories &amp;#123;    mavenCentral()&amp;#125; 使用maven本地配置，也可以使用第三方库，由于速度原因，我们选择了oscchina的maven镜像 12345repositories &amp;#123;    maven &amp;#123;      url &quot;http://maven">
   
     <link rel="alternative" href="/atom.xml" title="色彩与火焰" type="application/atom+xml">
   
@@ -98,13 +90,13 @@ ga('send', 'pageview');
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="/#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="/#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="rss" target="_blank" href="/#" title="rss"><i class="icon-rss"></i></a>
+					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="/#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 			</div>
 		</nav>
@@ -143,13 +135,13 @@ ga('send', 'pageview');
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="/#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="/#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="rss" target="_blank" href="/#" title="rss"><i class="icon-rss"></i></a>
+						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 			        
-						<a class="zhihu" target="_blank" href="/#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 				</div>
 			</nav>
@@ -197,10 +189,10 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="创建一个gradle管理的web项目">创建一个gradle管理的web项目</h3><p>使用普通的eclipse创建</p>
-<h3 id="配置第三方库">配置第三方库</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">repositories &#123;</span><br><span class="line">    mavenCentral()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="创建一个gradle管理的web项目"><a href="#创建一个gradle管理的web项目" class="headerlink" title="创建一个gradle管理的web项目"></a>创建一个gradle管理的web项目</h3><p>使用普通的eclipse创建</p>
+<h3 id="配置第三方库"><a href="#配置第三方库" class="headerlink" title="配置第三方库"></a>配置第三方库</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">repositories &#123;</div><div class="line">    mavenCentral()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>使用maven本地配置，也可以使用第三方库，由于速度原因，我们选择了oscchina的maven镜像</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">repositories &#123;</span><br><span class="line">    maven &#123;</span><br><span class="line">      url "http://maven.oschina.net/content/groups/public/"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">repositories &#123;</div><div class="line">    maven &#123;</div><div class="line">      url "http://maven.oschina.net/content/groups/public/"</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
 
@@ -281,7 +273,7 @@ ga('send', 'pageview');
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2015/06/12/create-gradle-web-project/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://colorfire.in/2015/06/12/create-gradle-web-project/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -295,18 +287,18 @@ ga('send', 'pageview');
   
 <nav id="article-nav">
   
-    <a href="/2015/06/17/cors-session-request/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/06/11/error-deployer-not-found-git/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          跨域请求时session的获取
+          异常处理&#39;ERROR Deployer not found:git&#39;
         
       </div>
     </a>
   
   
-    <a href="/2015/06/11/error-deployer-not-found-git/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">异常处理&#39;ERROR Deployer not found:git&#39;</div>
+    <a href="/2015/06/17/cors-session-request/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">跨域请求时session的获取</div>
       <i class="icon-circle-right"></i>
     </a>
   

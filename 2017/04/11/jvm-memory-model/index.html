@@ -5,20 +5,23 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="http://colorfire.in">
   <title>JVM内存模型 | 色彩与火焰</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="堆与非堆内存堆与非堆内存">
+  <meta name="description" content="1. 堆与非堆内存    Heap 堆区 No-Heap 非堆区     Young Generation 新生代/ Old Generation 旧生代 Method Area 方法区/ Thread Area 线程区   其中新生代又分为: Eden区/Survivor区 线程区分为: VM Stack 虚拟机栈/ Native Method Stack 本地方法栈/ Program Coun">
+<meta name="keywords" content="基础">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM内存模型">
-<meta property="og:url" content="http://yoursite.com/2017/04/11/jvm-memory-model/index.html">
+<meta property="og:url" content="http://colorfire.in/2017/04/11/jvm-memory-model/index.html">
 <meta property="og:site_name" content="色彩与火焰">
-<meta property="og:description" content="堆与非堆内存堆与非堆内存">
-<meta property="og:image" content="http://yoursite.com/2017/04/11/jvm-memory-model/JVMMemoryModel.png">
-<meta property="og:updated_time" content="2017-04-11T13:58:39.000Z">
+<meta property="og:description" content="1. 堆与非堆内存    Heap 堆区 No-Heap 非堆区     Young Generation 新生代/ Old Generation 旧生代 Method Area 方法区/ Thread Area 线程区   其中新生代又分为: Eden区/Survivor区 线程区分为: VM Stack 虚拟机栈/ Native Method Stack 本地方法栈/ Program Coun">
+<meta property="og:image" content="http://colorfire.in/2017/04/11/jvm-memory-model/JVMMemoryModel.png">
+<meta property="og:image" content="http://colorfire.in/2017/04/11/jvm-memory-model/javaObject.jpeg">
+<meta property="og:updated_time" content="2017-04-12T16:48:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM内存模型">
-<meta name="twitter:description" content="堆与非堆内存堆与非堆内存">
+<meta name="twitter:description" content="1. 堆与非堆内存    Heap 堆区 No-Heap 非堆区     Young Generation 新生代/ Old Generation 旧生代 Method Area 方法区/ Thread Area 线程区   其中新生代又分为: Eden区/Survivor区 线程区分为: VM Stack 虚拟机栈/ Native Method Stack 本地方法栈/ Program Coun">
+<meta name="twitter:image" content="http://colorfire.in/2017/04/11/jvm-memory-model/JVMMemoryModel.png">
   
     <link rel="alternative" href="/atom.xml" title="色彩与火焰" type="application/atom+xml">
   
@@ -90,13 +93,13 @@ ga('send', 'pageview');
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="/#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="/#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="rss" target="_blank" href="/#" title="rss"><i class="icon-rss"></i></a>
+					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="/#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 			</div>
 		</nav>
@@ -135,13 +138,13 @@ ga('send', 'pageview');
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="/#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="/#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="rss" target="_blank" href="/#" title="rss"><i class="icon-rss"></i></a>
+						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 			        
-						<a class="zhihu" target="_blank" href="/#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 				</div>
 			</nav>
@@ -189,7 +192,34 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="堆与非堆内存">堆与非堆内存</h1><p>堆与非堆内存<br><img src="/2017/04/11/jvm-memory-model/JVMMemoryModel.png" alt="memorymodel"></p>
+        <h1 id="1-堆与非堆内存"><a href="#1-堆与非堆内存" class="headerlink" title="1. 堆与非堆内存"></a>1. 堆与非堆内存</h1><p><img src="/2017/04/11/jvm-memory-model/JVMMemoryModel.png" alt="model"></p>
+<table>
+<thead>
+<tr>
+<th>Heap 堆区</th>
+<th>No-Heap 非堆区</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Young Generation 新生代/ Old Generation 旧生代</td>
+<td>Method Area 方法区/ Thread Area 线程区</td>
+</tr>
+<tr>
+<td>其中新生代又分为: Eden区/Survivor区</td>
+<td>线程区分为: VM Stack 虚拟机栈/ Native Method Stack 本地方法栈/ Program Counter 计数器</td>
+</tr>
+</tbody>
+</table>
+<p><em>其中Heap区域作为垃圾回收的主要操作空间，以及解释下为什么Survivor会有两个？</em></p>
+<blockquote>
+<p>大的对象直接进入旧生代</p>
+</blockquote>
+<h1 id="2-垃圾回收"><a href="#2-垃圾回收" class="headerlink" title="2. 垃圾回收"></a>2. 垃圾回收</h1><p>Heap堆内存分为新生代、老生代，比例1：2<br>新生代又分为Eden区和Survivor区，比例8：1：1；Eden区放新生对象、Survivor区放回收后存活的对象。</p>
+<h2 id="回收步骤"><a href="#回收步骤" class="headerlink" title="回收步骤"></a>回收步骤</h2><p><strong>标记整理清除:</strong> 先标记回收对象，然后再清除。会产生碎片。适用于存活对象多、回收对象少。<br><strong>复制清除:</strong> 先复制在清除，但复制的效率较低、占用较大内存。适用于存活对象少、回收对象多。<br><strong>分代回收:</strong> 新生代采用复制清除、老年代使用标记整理清除。这就是为什么分为两代区域保存，其中新生代又Eden空间和Survivor空间，并且比例是8:1:1，</p>
+<p>所以，需要有两个Survivor区域用来复制保留的对象。</p>
+<p><strong>举例</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// 分配了一个又一个对象</div><div class="line">放到Eden区</div><div class="line">// 不好，Eden区满了，只能GC(新生代GC：Minor GC)了</div><div class="line">把Eden区的存活对象copy到Survivor A区，然后清空Eden区（本来Survivor B区也需要清空的，不过本来就是空的）</div><div class="line">// 又分配了一个又一个对象</div><div class="line">放到Eden区</div><div class="line">// 不好，Eden区又满了，只能GC(新生代GC：Minor GC)了</div><div class="line">把Eden区和Survivor A区的存活对象copy到Survivor B区，然后清空Eden区和Survivor A区</div><div class="line">// 又分配了一个又一个对象</div><div class="line">放到Eden区</div><div class="line">// 不好，Eden区又满了，只能GC(新生代GC：Minor GC)了</div><div class="line">把Eden区和Survivor B区的存活对象copy到Survivor A区，然后清空Eden区和Survivor B区</div><div class="line">// ...</div><div class="line">// 有的对象来回在Survivor A区或者B区呆了比如15次，就被分配到老年代Old区</div><div class="line">// 有的对象太大，超过了Eden区，直接被分配在Old区</div><div class="line">// 有的存活对象，放不下Survivor区，也被分配到Old区</div><div class="line">// ...</div><div class="line">// 在某次Minor GC的过程中突然发现：</div><div class="line">// 不好，老年代Old区也满了，这是一次大GC(老年代GC：Major GC)</div><div class="line">Old区慢慢的整理一番，空间又够了</div><div class="line">// 继续Minor GC</div><div class="line">// ...</div><div class="line">// ...</div></pre></td></tr></table></figure></p>
+<h1 id="3-对象创建"><a href="#3-对象创建" class="headerlink" title="3.对象创建"></a>3.对象创建</h1><p>Object object = new Object();<br>首先是在Java方法栈中增加reference数据本地变量表，Java堆中保存实例化的对象，而相关的类型数据则保存在方法区。<br><img src="/2017/04/11/jvm-memory-model/javaObject.jpeg" alt="object"></p>
 
       
 
@@ -270,7 +300,7 @@ ga('send', 'pageview');
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/04/11/jvm-memory-model/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://colorfire.in/2017/04/11/jvm-memory-model/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -284,11 +314,15 @@ ga('send', 'pageview');
   
 <nav id="article-nav">
   
-  
-    <a href="/2017/03/28/hexo-blog-guide/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hexo+github 快速搭建手册</div>
-      <i class="icon-circle-right"></i>
+    <a href="/2017/03/28/hexo-blog-guide/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          hexo+github 快速搭建手册
+        
+      </div>
     </a>
+  
   
 </nav>
 
