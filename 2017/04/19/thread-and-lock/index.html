@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://colorfire.in">
-  <title>锁机制 | 色彩与火焰</title>
+  <title>线程与锁机制 | 色彩与火焰</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="互斥同步互斥同步(Mutual Exclusion &amp;amp; Synchronization)是常见的线程安全的保障手段。同步定义：保证共享数据在同一个时刻只被一条（或多条，在使用信号量的时候）线程使用。互斥定义：互斥是实现同步的一种手段，包括：临界区（Citical Section）、互斥量（Mutex）和信号量（Semaphore）。 Synchronized（同步关键字）Synchroni">
 <meta name="keywords" content="lock">
 <meta property="og:type" content="article">
-<meta property="og:title" content="锁机制">
+<meta property="og:title" content="线程与锁机制">
 <meta property="og:url" content="http://colorfire.in/2017/04/19/thread-and-lock/index.html">
 <meta property="og:site_name" content="色彩与火焰">
 <meta property="og:description" content="互斥同步互斥同步(Mutual Exclusion &amp;amp; Synchronization)是常见的线程安全的保障手段。同步定义：保证共享数据在同一个时刻只被一条（或多条，在使用信号量的时候）线程使用。互斥定义：互斥是实现同步的一种手段，包括：临界区（Citical Section）、互斥量（Mutex）和信号量（Semaphore）。 Synchronized（同步关键字）Synchroni">
-<meta property="og:image" content="http://colorfire.in/2017/04/19/thread-and-lock/">
-<meta property="og:updated_time" content="2017-04-19T14:22:40.000Z">
+<meta property="og:image" content="http://colorfire.in/2017/04/19/thread-and-lock/thread.jpg">
+<meta property="og:updated_time" content="2017-04-19T14:30:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="锁机制">
+<meta name="twitter:title" content="线程与锁机制">
 <meta name="twitter:description" content="互斥同步互斥同步(Mutual Exclusion &amp;amp; Synchronization)是常见的线程安全的保障手段。同步定义：保证共享数据在同一个时刻只被一条（或多条，在使用信号量的时候）线程使用。互斥定义：互斥是实现同步的一种手段，包括：临界区（Citical Section）、互斥量（Mutex）和信号量（Semaphore）。 Synchronized（同步关键字）Synchroni">
-<meta name="twitter:image" content="http://colorfire.in/2017/04/19/thread-and-lock/">
+<meta name="twitter:image" content="http://colorfire.in/2017/04/19/thread-and-lock/thread.jpg">
   
     <link rel="alternative" href="/atom.xml" title="色彩与火焰" type="application/atom+xml">
   
@@ -178,7 +178,7 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      锁机制
+      线程与锁机制
     </h1>
   
 
@@ -211,7 +211,7 @@ ga('send', 'pageview');
 <h2 id="偏向锁"><a href="#偏向锁" class="headerlink" title="偏向锁"></a>偏向锁</h2><p>偏向锁是为了消除数据在无竞争情况下的同步原语，进而提高运行性能。相比轻量级锁，在无竞争状态干脆连CAS都不做了。<br>该锁偏向当前获得它的线程，如果接下来没有其他线程竞争该资源，偏向锁的线程不再需要同步。</p>
 <hr>
 <h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><p>协同式调度，线程的执行时间由线程本身来控制，在把自己的工作执行完了之后，主动通知系统切换到另一个线程。这种方式实现简单，但线程执行时间不可预期，如果线程存在问题会一直阻塞无法切换线程。<br>抢占式调度，每个线程将由系统来分配执行时间，线程的切换不由线程本身决定（Thread.yield方法可以让出执行时间，获得执行时间本身没有办法）。<br>线程可以指定优先级，优先级越高的越容易被系统选中执行。</p>
-<p>线程状态间切换<br><img src="/2017/04/19/thread-and-lock/" alt="img"></p>
+<p><strong>线程状态间切换:</strong><br><img src="/2017/04/19/thread-and-lock/thread.jpg" alt="state"></p>
 <p>原子性：操作指令要么执行成功、要么执行失败，不会出现中间执行一半的状态。<br>可见性：当一个线程修改了共享变量的值，其他线程能够立即得知修改。<br>有序性：当前线程观潮所有的操作都是有序的，，但一个线程观察另一个线程所有的操作都是无序的（由于指令重排和工作内存同步延迟的问题）。</p>
 <h2 id="Volatile变量"><a href="#Volatile变量" class="headerlink" title="Volatile变量"></a>Volatile变量</h2><p>关键字volatile是虚拟机提供的最轻量级的同步机制，其包含两种特性：线程可见性和禁止指令重排。<br>可见性：当一个线程修改了volatile变量，新值对于其他线程是立即可见的。不会出现幻读、脏读的情况。但类似i++的自增操作由于不是原子性操作，如果并发写也会导致变量的错误，所以volatile关键字标注的变量并不是线程安全的。</p>
 <p>volatile关键字读操作，基本没有多余性能消耗；但写操作由于采用了许多内存屏障（Memory Barrier）指令来保证处理器不发生乱序执行，性能稍差。但总体比锁机制要好多。</p>

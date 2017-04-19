@@ -176,7 +176,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/19/thread-and-lock/">锁机制</a>
+      <a class="article-title" href="/2017/04/19/thread-and-lock/">线程与锁机制</a>
     </h1>
   
 
@@ -209,7 +209,7 @@ ga('send', 'pageview');
 <h2 id="偏向锁"><a href="#偏向锁" class="headerlink" title="偏向锁"></a>偏向锁</h2><p>偏向锁是为了消除数据在无竞争情况下的同步原语，进而提高运行性能。相比轻量级锁，在无竞争状态干脆连CAS都不做了。<br>该锁偏向当前获得它的线程，如果接下来没有其他线程竞争该资源，偏向锁的线程不再需要同步。</p>
 <hr>
 <h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><p>协同式调度，线程的执行时间由线程本身来控制，在把自己的工作执行完了之后，主动通知系统切换到另一个线程。这种方式实现简单，但线程执行时间不可预期，如果线程存在问题会一直阻塞无法切换线程。<br>抢占式调度，每个线程将由系统来分配执行时间，线程的切换不由线程本身决定（Thread.yield方法可以让出执行时间，获得执行时间本身没有办法）。<br>线程可以指定优先级，优先级越高的越容易被系统选中执行。</p>
-<p>线程状态间切换<br><img src="/2017/04/19/thread-and-lock/" alt="img"></p>
+<p><strong>线程状态间切换:</strong><br><img src="/2017/04/19/thread-and-lock/thread.jpg" alt="state"></p>
 <p>原子性：操作指令要么执行成功、要么执行失败，不会出现中间执行一半的状态。<br>可见性：当一个线程修改了共享变量的值，其他线程能够立即得知修改。<br>有序性：当前线程观潮所有的操作都是有序的，，但一个线程观察另一个线程所有的操作都是无序的（由于指令重排和工作内存同步延迟的问题）。</p>
 <h2 id="Volatile变量"><a href="#Volatile变量" class="headerlink" title="Volatile变量"></a>Volatile变量</h2><p>关键字volatile是虚拟机提供的最轻量级的同步机制，其包含两种特性：线程可见性和禁止指令重排。<br>可见性：当一个线程修改了volatile变量，新值对于其他线程是立即可见的。不会出现幻读、脏读的情况。但类似i++的自增操作由于不是原子性操作，如果并发写也会导致变量的错误，所以volatile关键字标注的变量并不是线程安全的。</p>
 <p>volatile关键字读操作，基本没有多余性能消耗；但写操作由于采用了许多内存屏障（Memory Barrier）指令来保证处理器不发生乱序执行，性能稍差。但总体比锁机制要好多。</p>
@@ -336,7 +336,7 @@ ga('send', 'pageview');
 <p>所以，需要有两个Survivor区域用来复制保留的对象。</p>
 <p><strong>举例：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// 分配了一个又一个对象</div><div class="line">放到Eden区</div><div class="line">// 不好，Eden区满了，只能GC(新生代GC：Minor GC)了</div><div class="line">把Eden区的存活对象copy到Survivor A区，然后清空Eden区（本来Survivor B区也需要清空的，不过本来就是空的）</div><div class="line">// 又分配了一个又一个对象</div><div class="line">放到Eden区</div><div class="line">// 不好，Eden区又满了，只能GC(新生代GC：Minor GC)了</div><div class="line">把Eden区和Survivor A区的存活对象copy到Survivor B区，然后清空Eden区和Survivor A区</div><div class="line">// 又分配了一个又一个对象</div><div class="line">放到Eden区</div><div class="line">// 不好，Eden区又满了，只能GC(新生代GC：Minor GC)了</div><div class="line">把Eden区和Survivor B区的存活对象copy到Survivor A区，然后清空Eden区和Survivor B区</div><div class="line">// ...</div><div class="line">// 有的对象来回在Survivor A区或者B区呆了比如15次，就被分配到老年代Old区</div><div class="line">// 有的对象太大，超过了Eden区，直接被分配在Old区</div><div class="line">// 有的存活对象，放不下Survivor区，也被分配到Old区</div><div class="line">// ...</div><div class="line">// 在某次Minor GC的过程中突然发现：</div><div class="line">// 不好，旧生代Old区也满了，这是一次大GC(旧生代GC：Major GC)</div><div class="line">Old区慢慢的整理一番，空间又够了</div><div class="line">// 继续Minor GC</div><div class="line">// ...</div><div class="line">// ...</div></pre></td></tr></table></figure></p>
 <p><em>Survivor区域有两个是因为需要复制留存的对象，From Survivor和To Survivor也会根据情况来互换。</em></p>
-<h1 id="3-对象创建"><a href="#3-对象创建" class="headerlink" title="3.对象创建"></a>3.对象创建</h1><p>首先是在Java方法栈中增加reference数据本地变量表，Java堆中保存实例化的对象，而相关的类型数据则保存在方法区。<br><img src="/2017/04/11/jvm-memory-model/javaObject.jpeg" alt="object"></p>
+<h1 id="3-对象创建"><a href="#3-对象创建" class="headerlink" title="3.对象创建"></a>3.对象创建</h1><p>首先是在Java方法栈中增加reference数据本地变量表，Java堆中保存实例化的对象，而相关的类型数据则保存在方法区。<br><img src="/2017/04/11/jvm-memory-model/javaObject.jpg" alt="object"></p>
 <p><strong>伪代码举例：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public class Object &#123;</div><div class="line">    int id;</div><div class="line">    String name;</div><div class="line"></div><div class="line">    void method_name() &#123;&#125;</div><div class="line">    //对象类型等数据（父类、接口、方法）会存储在方法区，Heap区只使用指针作为指向</div><div class="line">&#125;</div><div class="line"></div><div class="line">Object object = new Object();</div><div class="line">// object反映到栈的局部变量表中，作为reference类型存储</div><div class="line">// new Object() 反映到Heap区域，保存实例数据</div></pre></td></tr></table></figure></p>
 <p><em>使用指针访问数据类型的好处是速度较快，但垃圾回收时相比句柄池，对象会被整体移动损耗时间较长</em></p>
 
