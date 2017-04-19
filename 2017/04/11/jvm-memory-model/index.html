@@ -17,7 +17,7 @@
 <meta property="og:description" content="1. 堆与非堆内存    Heap 堆区 No-Heap 非堆区     Young Generation 新生代/ Old Generation 旧生代 Method Area 方法区/ Thread Area 线程区   其中新生代又分为: Eden区/Survivor区 线程区分为: VM Stack 虚拟机栈/ Runtime Constant Pool常量池/ Program Count">
 <meta property="og:image" content="http://colorfire.in/2017/04/11/jvm-memory-model/JVMMemoryModel.png">
 <meta property="og:image" content="http://colorfire.in/2017/04/11/jvm-memory-model/javaObject.jpeg">
-<meta property="og:updated_time" content="2017-04-13T13:29:02.000Z">
+<meta property="og:updated_time" content="2017-04-13T13:31:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM内存模型">
 <meta name="twitter:description" content="1. 堆与非堆内存    Heap 堆区 No-Heap 非堆区     Young Generation 新生代/ Old Generation 旧生代 Method Area 方法区/ Thread Area 线程区   其中新生代又分为: Eden区/Survivor区 线程区分为: VM Stack 虚拟机栈/ Runtime Constant Pool常量池/ Program Count">
@@ -233,12 +233,12 @@ ga('send', 'pageview');
 </ul>
 <p><em>其中Heap区域作为垃圾回收的主要操作空间，以及解释下为什么Survivor会有两个？</em></p>
 <blockquote>
-<p>大的对象直接进入旧生代<br>对于线上环境的内存泄露问题可以采用使用btrace等工具</p>
+<p>大的对象直接进入旧生代，长期存活的对象进入旧生代<br>对于线上环境的内存泄露问题可以采用使用btrace等工具</p>
 </blockquote>
 <h1 id="2-垃圾回收"><a href="#2-垃圾回收" class="headerlink" title="2. 垃圾回收"></a>2. 垃圾回收</h1><p>Heap堆内存分为新生代、老生代，比例1：2<br>新生代又分为Eden区和Survivor区，比例8：1：1；Eden区放新生对象、Survivor区放回收后存活的对象。</p>
 <h2 id="回收步骤"><a href="#回收步骤" class="headerlink" title="回收步骤"></a>回收步骤</h2><p><strong>标记整理清除:</strong> 先标记回收对象，然后再清除。会产生碎片。适用于存活对象多、回收对象少。<br><strong>复制清除:</strong> 先复制在清除，但复制的效率较低、占用较大内存。适用于存活对象少、回收对象多。<br><strong>分代回收:</strong> 新生代采用复制清除、老年代使用标记整理清除。这就是为什么分为两代区域保存，其中新生代又Eden空间和Survivor空间，并且比例是8:1:1，</p>
 <p>所以，需要有两个Survivor区域用来复制保留的对象。</p>
-<p><strong>举例：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// 分配了一个又一个对象</div><div class="line">放到Eden区</div><div class="line">// 不好，Eden区满了，只能GC(新生代GC：Minor GC)了</div><div class="line">把Eden区的存活对象copy到Survivor A区，然后清空Eden区（本来Survivor B区也需要清空的，不过本来就是空的）</div><div class="line">// 又分配了一个又一个对象</div><div class="line">放到Eden区</div><div class="line">// 不好，Eden区又满了，只能GC(新生代GC：Minor GC)了</div><div class="line">把Eden区和Survivor A区的存活对象copy到Survivor B区，然后清空Eden区和Survivor A区</div><div class="line">// 又分配了一个又一个对象</div><div class="line">放到Eden区</div><div class="line">// 不好，Eden区又满了，只能GC(新生代GC：Minor GC)了</div><div class="line">把Eden区和Survivor B区的存活对象copy到Survivor A区，然后清空Eden区和Survivor B区</div><div class="line">// ...</div><div class="line">// 有的对象来回在Survivor A区或者B区呆了比如15次，就被分配到老年代Old区</div><div class="line">// 有的对象太大，超过了Eden区，直接被分配在Old区</div><div class="line">// 有的存活对象，放不下Survivor区，也被分配到Old区</div><div class="line">// ...</div><div class="line">// 在某次Minor GC的过程中突然发现：</div><div class="line">// 不好，老年代Old区也满了，这是一次大GC(老年代GC：Major GC)</div><div class="line">Old区慢慢的整理一番，空间又够了</div><div class="line">// 继续Minor GC</div><div class="line">// ...</div><div class="line">// ...</div></pre></td></tr></table></figure></p>
+<p><strong>举例：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// 分配了一个又一个对象</div><div class="line">放到Eden区</div><div class="line">// 不好，Eden区满了，只能GC(新生代GC：Minor GC)了</div><div class="line">把Eden区的存活对象copy到Survivor A区，然后清空Eden区（本来Survivor B区也需要清空的，不过本来就是空的）</div><div class="line">// 又分配了一个又一个对象</div><div class="line">放到Eden区</div><div class="line">// 不好，Eden区又满了，只能GC(新生代GC：Minor GC)了</div><div class="line">把Eden区和Survivor A区的存活对象copy到Survivor B区，然后清空Eden区和Survivor A区</div><div class="line">// 又分配了一个又一个对象</div><div class="line">放到Eden区</div><div class="line">// 不好，Eden区又满了，只能GC(新生代GC：Minor GC)了</div><div class="line">把Eden区和Survivor B区的存活对象copy到Survivor A区，然后清空Eden区和Survivor B区</div><div class="line">// ...</div><div class="line">// 有的对象来回在Survivor A区或者B区呆了比如15次，就被分配到老年代Old区</div><div class="line">// 有的对象太大，超过了Eden区，直接被分配在Old区</div><div class="line">// 有的存活对象，放不下Survivor区，也被分配到Old区</div><div class="line">// ...</div><div class="line">// 在某次Minor GC的过程中突然发现：</div><div class="line">// 不好，旧生代Old区也满了，这是一次大GC(旧生代GC：Major GC)</div><div class="line">Old区慢慢的整理一番，空间又够了</div><div class="line">// 继续Minor GC</div><div class="line">// ...</div><div class="line">// ...</div></pre></td></tr></table></figure></p>
 <p><em>Survivor区域有两个是因为需要复制留存的对象，From Survivor和To Survivor也会根据情况来互换。</em></p>
 <h1 id="3-对象创建"><a href="#3-对象创建" class="headerlink" title="3.对象创建"></a>3.对象创建</h1><p>首先是在Java方法栈中增加reference数据本地变量表，Java堆中保存实例化的对象，而相关的类型数据则保存在方法区。<br><img src="/2017/04/11/jvm-memory-model/javaObject.jpeg" alt="object"></p>
 <p><strong>伪代码举例：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public class Object &#123;</div><div class="line">    int id;</div><div class="line">    String name;</div><div class="line"></div><div class="line">    void method_name() &#123;&#125;</div><div class="line">    //对象类型等数据（父类、接口、方法）会存储在方法区，Heap区只使用指针作为指向</div><div class="line">&#125;</div><div class="line"></div><div class="line">Object object = new Object();</div><div class="line">// object反映到栈的局部变量表中，作为reference类型存储</div><div class="line">// new Object() 反映到Heap区域，保存实例数据</div></pre></td></tr></table></figure></p>
@@ -346,6 +346,11 @@ ga('send', 'pageview');
       </div>
     </a>
   
+  
+    <a href="/2017/04/19/thread-and-lock/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">锁机制</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 

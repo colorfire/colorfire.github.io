@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://colorfire.in">
-  <title>Archives: 2017 | 色彩与火焰</title>
+  <title>锁机制 | 色彩与火焰</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="技术宅、游泳爱好者、摄影入门党、娃控">
-<meta property="og:type" content="website">
-<meta property="og:title" content="色彩与火焰">
-<meta property="og:url" content="http://colorfire.in/archives/2017/index.html">
+  <meta name="description" content="互斥同步互斥同步(Mutual Exclusion &amp;amp; Synchronization)是常见的线程安全的保障手段。同步定义：保证共享数据在同一个时刻只被一条（或多条，在使用信号量的时候）线程使用。互斥定义：互斥是实现同步的一种手段，包括：临界区（Citical Section）、互斥量（Mutex）和信号量（Semaphore）。 Synchronized（同步关键字）Synchroni">
+<meta name="keywords" content="lock">
+<meta property="og:type" content="article">
+<meta property="og:title" content="锁机制">
+<meta property="og:url" content="http://colorfire.in/2017/04/19/thread-and-lock/index.html">
 <meta property="og:site_name" content="色彩与火焰">
-<meta property="og:description" content="技术宅、游泳爱好者、摄影入门党、娃控">
+<meta property="og:description" content="互斥同步互斥同步(Mutual Exclusion &amp;amp; Synchronization)是常见的线程安全的保障手段。同步定义：保证共享数据在同一个时刻只被一条（或多条，在使用信号量的时候）线程使用。互斥定义：互斥是实现同步的一种手段，包括：临界区（Citical Section）、互斥量（Mutex）和信号量（Semaphore）。 Synchronized（同步关键字）Synchroni">
+<meta property="og:updated_time" content="2017-04-19T07:59:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="色彩与火焰">
-<meta name="twitter:description" content="技术宅、游泳爱好者、摄影入门党、娃控">
+<meta name="twitter:title" content="锁机制">
+<meta name="twitter:description" content="互斥同步互斥同步(Mutual Exclusion &amp;amp; Synchronization)是常见的线程安全的保障手段。同步定义：保证共享数据在同一个时刻只被一条（或多条，在使用信号量的时候）线程使用。互斥定义：互斥是实现同步的一种手段，包括：临界区（Citical Section）、互斥量（Mutex）和信号量（Semaphore）。 Synchronized（同步关键字）Synchroni">
   
     <link rel="alternative" href="/atom.xml" title="色彩与火焰" type="application/atom+xml">
   
@@ -167,36 +169,52 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-thread-and-lock" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/19/thread-and-lock/" class="archive-article-date">
-  	<time datetime="2017-04-19T07:52:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-19</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/19/thread-and-lock/">锁机制</a>
+    <h1 class="article-title" itemprop="name">
+      锁机制
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/04/19/thread-and-lock/" class="archive-article-date">
+  	<time datetime="2017-04-19T07:52:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="互斥同步"><a href="#互斥同步" class="headerlink" title="互斥同步"></a>互斥同步</h1><p>互斥同步(Mutual Exclusion &amp; Synchronization)是常见的线程安全的保障手段。<br>同步定义：保证共享数据在同一个时刻只被一条（或多条，在使用信号量的时候）线程使用。<br>互斥定义：互斥是实现同步的一种手段，包括：临界区（Citical Section）、互斥量（Mutex）和信号量（Semaphore）。</p>
+<h2 id="Synchronized（同步关键字）"><a href="#Synchronized（同步关键字）" class="headerlink" title="Synchronized（同步关键字）"></a>Synchronized（同步关键字）</h2><p>Synchronized会在同步块的前后形成MonitorEnter和MonitorExit两个字节码指令，会含有一个Reference类型参数指定一个锁定和解锁的对象，如果没有则会根据修饰的是类方法或者实例方法去取对应的实例或Class对象来作为锁对象。<br>执行MonitorEnter命令时，会尝试获取对象的锁，如果对象没有被锁定或者已经拥有了对象的锁，则把锁的计数器加1，在执行MonitorExit命令时会将锁的计数器减1。当锁的计数器为0时，锁就被释放了。如果获取失败，那么当前线程会阻塞等待（线程阻塞、挂起是需要调用操作系统级的指令，开销较大），直到对象的锁被其他线程释放。</p>
+<h2 id="ReentrantLock（可重入锁）"><a href="#ReentrantLock（可重入锁）" class="headerlink" title="ReentrantLock（可重入锁）"></a>ReentrantLock（可重入锁）</h2><p>ReentrantLock与Synchronized都具有线程重入特性。</p>
+<ul>
+<li>等待可中断，正在等待的线程如果长期获取不到对象的锁，可以放弃等待改作其他事情（lock.lockInterruptibly能够响应中断）。</li>
+<li>公平锁，必须按照等待时间来一次获得锁；Synchronized是不具备该功能。</li>
+<li>绑定多条件，可以绑定多个Condition对象来支持多种条件。</li>
+</ul>
+<p>ReentrantLock与Synchronized吞吐量性能，在JDK1.6之后就不是那么明显，由于Synchronized的继续优化，优先考虑使用Synchronized关键字。<br><strong> 笔者：总结来讲两者都具有重入性，可以满足大多数场景的使用，除非使用到了可中断等特性，否则推荐使用Sync关键字。</strong></p>
+<p>ReentrantLock的父类中会有一个state变量来表示同步的状态, 通过CAS操作来设置state来获取锁，如果设置成了1，则将锁的持有者给当前线程, 如果拿锁不成功，则会做一个申请, 如果还是没有申请到锁，就addWaiter，意思是把自己加到等待队列中去, 其间还会有多次尝试去申请锁，如果还是申请不到，就会被挂起。<br>Semaphore 对于锁来说，它是互斥的排他的。意思就是，只要我获得了锁，没人能再获得了。可以定义限额。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> Semaphore semaphore = <span class="keyword">new</span> Semaphore(<span class="number">5</span>);</div></pre></td></tr></table></figure></p>
+<h1 id="非阻塞同步"><a href="#非阻塞同步" class="headerlink" title="非阻塞同步"></a>非阻塞同步</h1><p>非阻塞同步是基于冲突检测的乐观并发策略，如果产生了冲突，就采用补偿措施（最常见的就是不断重试，直到成功为止），这种并发策略不需要挂起线程。<br>（非阻塞同步需要硬件指令集的支持，来保证操作和冲突检测是原子性操作）</p>
+<h2 id="CAS（乐观锁）"><a href="#CAS（乐观锁）" class="headerlink" title="CAS（乐观锁）"></a>CAS（乐观锁）</h2><p>比较并交换操作（Compare and Swap），是通过处理器指令（cmpxchg）来实现的。<br>算法的过程是这样：它包含3个参数CAS(V,E,N)。V表示要更新的变量，E表示预期值，N表示新值。仅当V值等于E值时，才会将V的值设为N，如果V值和E值不同，则说明经有其他线程做了更新，则当前线程什么都不做。</p>
+<p>AtomicInteger：做为线程安全的i++， increaseAndGet();<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">incrementAndGet</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (;;) &#123;</div><div class="line">            <span class="keyword">int</span> current = get();</div><div class="line">            <span class="keyword">int</span> next = current + <span class="number">1</span>;</div><div class="line">            <span class="keyword">if</span> (compareAndSet(current, next))</div><div class="line">                <span class="keyword">return</span> next;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h1 id="无同步方案"><a href="#无同步方案" class="headerlink" title="无同步方案"></a>无同步方案</h1><p>可以将需要共享的数据可见范围限制在同一个线程之内，最常见的是消费队列（生产者-消费者）模式，将消费过程尽量在一个线程中消费完。<br>Web交互模型，一个请求对应一个服务器线程的处理。</p>
+<h2 id="ThreadLocal线程存储"><a href="#ThreadLocal线程存储" class="headerlink" title="ThreadLocal线程存储"></a>ThreadLocal线程存储</h2><p>每一个线程的Thread对象都有一个ThreadLocalMap对象，这个对象存储了一组以HashCode为键值的K-V值对来找到对应的本地线程变量。</p>
+<h1 id="线程安全（TODO：to-be-continue）"><a href="#线程安全（TODO：to-be-continue）" class="headerlink" title="线程安全（TODO：to be continue）"></a>线程安全（TODO：to be continue）</h1><blockquote>
+<p>参考：《深入理解Java虚拟机》<br><a href="https://my.oschina.net/hosee/blog/614319" target="_blank" rel="external">https://my.oschina.net/hosee/blog/614319</a><br><a href="https://my.oschina.net/hosee/blog/599884" target="_blank" rel="external">https://my.oschina.net/hosee/blog/599884</a></p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -208,7 +226,7 @@ ga('send', 'pageview');
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -221,123 +239,90 @@ ga('send', 'pageview');
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://colorfire.in/2017/04/19/thread-and-lock/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/11/jvm-memory-model/" class="archive-article-date">
-  	<time datetime="2017-04-11T13:15:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/11/jvm-memory-model/">JVM内存模型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java/" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/28/hexo-blog-guide/" class="archive-article-date">
-  	<time datetime="2017-03-28T13:00:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/28/hexo-blog-guide/">hexo+github 快速搭建手册</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Node</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Github</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Blog/" class="article-tag-list-link color5">Blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+    <a href="/2017/04/11/jvm-memory-model/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          JVM内存模型
+        
+      </div>
+    </a>
   
   
-    </div></section>
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-    
+
 
 
           </div>
@@ -360,8 +345,8 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
