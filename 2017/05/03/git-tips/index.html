@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://colorfire.in">
-  <title>Tag: 工具 | 色彩与火焰</title>
+  <title>Git配置技巧 | 色彩与火焰</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="技术宅、游泳爱好者、摄影入门党、娃控">
-<meta property="og:type" content="website">
-<meta property="og:title" content="色彩与火焰">
-<meta property="og:url" content="http://colorfire.in/tags/工具/index.html">
+  <meta name="description" content="1. Git命令自动补全MacOS系统下，优先配置好bash_profile的系统变量加载。否则，bashrc不会生效。 12345678910#-------------------------------------------------------------# Source global definitions (if any)#-----------------------------">
+<meta name="keywords" content="git tips">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git配置技巧">
+<meta property="og:url" content="http://colorfire.in/2017/05/03/git-tips/index.html">
 <meta property="og:site_name" content="色彩与火焰">
-<meta property="og:description" content="技术宅、游泳爱好者、摄影入门党、娃控">
+<meta property="og:description" content="1. Git命令自动补全MacOS系统下，优先配置好bash_profile的系统变量加载。否则，bashrc不会生效。 12345678910#-------------------------------------------------------------# Source global definitions (if any)#-----------------------------">
+<meta property="og:updated_time" content="2017-05-03T13:28:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="色彩与火焰">
-<meta name="twitter:description" content="技术宅、游泳爱好者、摄影入门党、娃控">
+<meta name="twitter:title" content="Git配置技巧">
+<meta name="twitter:description" content="1. Git命令自动补全MacOS系统下，优先配置好bash_profile的系统变量加载。否则，bashrc不会生效。 12345678910#-------------------------------------------------------------# Source global definitions (if any)#-----------------------------">
   
     <link rel="alternative" href="/atom.xml" title="色彩与火焰" type="application/atom+xml">
   
@@ -167,48 +169,59 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-git-tips" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/06/26/sublime-guide/" class="archive-article-date">
-  	<time datetime="2015-06-26T03:47:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-06-26</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/06/26/sublime-guide/">如何使用sublime</a>
+    <h1 class="article-title" itemprop="name">
+      Git配置技巧
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/05/03/git-tips/" class="archive-article-date">
+  	<time datetime="2017-05-03T13:14:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Git命令自动补全"><a href="#1-Git命令自动补全" class="headerlink" title="1. Git命令自动补全"></a>1. Git命令自动补全</h1><p>MacOS系统下，优先配置好bash_profile的系统变量加载。否则，bashrc不会生效。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#-------------------------------------------------------------</div><div class="line"># Source global definitions (if any)</div><div class="line">#-------------------------------------------------------------</div><div class="line"></div><div class="line"></div><div class="line">if [ -f ~/.bashrc ]; then</div><div class="line">      . ~/.bashrc   # --&gt; Read ~/.bashrc, if present.</div><div class="line">fi</div><div class="line"></div><div class="line">source ~/.git-completion.bash</div></pre></td></tr></table></figure>
+<p>Git的源代码包里的contrib/completion目录下有个git-completion.bash，把这个文件保存到~/.git-completion.bash，<br>然后在.bash_profile中加入一行。</p>
+<h1 id="2-别名设置"><a href="#2-别名设置" class="headerlink" title="2. 别名设置"></a>2. 别名设置</h1><p>别名设置可以简化git长命令的输入，比如经常使用的git pull origin dev估计很多人都形成肌肉记忆了。<br>可以简化为git plode，<strong>在用户目录下创建.gitconfig文件，增加如下配置：</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">[user]</div><div class="line">        name = colorfire</div><div class="line">        email = caihuo@gmail.com</div><div class="line">[core]</div><div class="line">        autocrlf = input</div><div class="line">[alias]</div><div class="line">    co = checkout</div><div class="line">    ss = status</div><div class="line">    cm = commit -m</div><div class="line">    br = branch</div><div class="line">    bm = branch -m</div><div class="line">    bd = branch -D</div><div class="line">    cb = checkout -b</div><div class="line">    df = diff</div><div class="line">    ls = log --stat</div><div class="line">    lp = log -p</div><div class="line">    plo = pull origin</div><div class="line">    plode = pull origin dev</div><div class="line">    pho = push origin</div></pre></td></tr></table></figure>
+<h1 id="3-Git生僻命令"><a href="#3-Git生僻命令" class="headerlink" title="3. Git生僻命令"></a>3. Git生僻命令</h1><ol>
+<li>#git pull —rebase origin dev     // 下载新的代码并执行rebase，可以保证代码最新并且不会生成merge commit</li>
+<li>#git checkout -b dev origin/dev  // 获取远端分支并在本地创建，（命令前提需要git fetch最新的代码）</li>
+<li>#git merge -s ours release       // 强行以本地代码为主线merge代码，也可以将ours替换为theirs，已release版本为主（谨慎使用）</li>
+<li>#git diff -b release –name-only // 对比分支上不同的文件，只显示名称</li>
+<li>#git merge -s theirs -X ignore-all-space release // 忽略空格来合并代码</li>
+<li>#git update-index –assume-unchanged file        // 忽略指定的文件，不加入git版本库（适合在gitignore漏掉时使用）</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git tips</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -221,17 +234,90 @@ ga('send', 'pageview');
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://colorfire.in/2017/05/03/git-tips/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/04/19/thread-and-lock/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          线程与锁机制
+        
+      </div>
+    </a>
   
   
-    </div></section>
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-    
+
 
 
           </div>
@@ -254,9 +340,9 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

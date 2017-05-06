@@ -169,6 +169,91 @@ ga('send', 'pageview');
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-git-tips" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/03/git-tips/">Git配置技巧</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/03/git-tips/" class="archive-article-date">
+  	<time datetime="2017-05-03T13:14:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Git命令自动补全"><a href="#1-Git命令自动补全" class="headerlink" title="1. Git命令自动补全"></a>1. Git命令自动补全</h1><p>MacOS系统下，优先配置好bash_profile的系统变量加载。否则，bashrc不会生效。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#-------------------------------------------------------------</div><div class="line"># Source global definitions (if any)</div><div class="line">#-------------------------------------------------------------</div><div class="line"></div><div class="line"></div><div class="line">if [ -f ~/.bashrc ]; then</div><div class="line">      . ~/.bashrc   # --&gt; Read ~/.bashrc, if present.</div><div class="line">fi</div><div class="line"></div><div class="line">source ~/.git-completion.bash</div></pre></td></tr></table></figure>
+<p>Git的源代码包里的contrib/completion目录下有个git-completion.bash，把这个文件保存到~/.git-completion.bash，<br>然后在.bash_profile中加入一行。</p>
+<h1 id="2-别名设置"><a href="#2-别名设置" class="headerlink" title="2. 别名设置"></a>2. 别名设置</h1><p>别名设置可以简化git长命令的输入，比如经常使用的git pull origin dev估计很多人都形成肌肉记忆了。<br>可以简化为git plode，<strong>在用户目录下创建.gitconfig文件，增加如下配置：</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">[user]</div><div class="line">        name = colorfire</div><div class="line">        email = caihuo@gmail.com</div><div class="line">[core]</div><div class="line">        autocrlf = input</div><div class="line">[alias]</div><div class="line">    co = checkout</div><div class="line">    ss = status</div><div class="line">    cm = commit -m</div><div class="line">    br = branch</div><div class="line">    bm = branch -m</div><div class="line">    bd = branch -D</div><div class="line">    cb = checkout -b</div><div class="line">    df = diff</div><div class="line">    ls = log --stat</div><div class="line">    lp = log -p</div><div class="line">    plo = pull origin</div><div class="line">    plode = pull origin dev</div><div class="line">    pho = push origin</div></pre></td></tr></table></figure>
+<h1 id="3-Git生僻命令"><a href="#3-Git生僻命令" class="headerlink" title="3. Git生僻命令"></a>3. Git生僻命令</h1><ol>
+<li>#git pull —rebase origin dev     // 下载新的代码并执行rebase，可以保证代码最新并且不会生成merge commit</li>
+<li>#git checkout -b dev origin/dev  // 获取远端分支并在本地创建，（命令前提需要git fetch最新的代码）</li>
+<li>#git merge -s ours release       // 强行以本地代码为主线merge代码，也可以将ours替换为theirs，已release版本为主（谨慎使用）</li>
+<li>#git diff -b release –name-only // 对比分支上不同的文件，只显示名称</li>
+<li>#git merge -s theirs -X ignore-all-space release // 忽略空格来合并代码</li>
+<li>#git update-index –assume-unchanged file        // 忽略指定的文件，不加入git版本库（适合在gitignore漏掉时使用）</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git tips</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tools/" class="article-tag-list-link color1">tools</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/03/git-tips/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-thread-and-lock" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -528,6 +613,7 @@ ga('send', 'pageview');
 <h3 id="未来简史"><a href="#未来简史" class="headerlink" title="未来简史"></a>未来简史</h3><p>2017-2月 读完</p>
 <h3 id="把时间当做朋友"><a href="#把时间当做朋友" class="headerlink" title="把时间当做朋友"></a>把时间当做朋友</h3><p>2017-3月 读完</p>
 <h3 id="菊与刀"><a href="#菊与刀" class="headerlink" title="菊与刀"></a>菊与刀</h3><p>2017-3月 读中</p>
+<h3 id="深入理解java虚拟机"><a href="#深入理解java虚拟机" class="headerlink" title="深入理解java虚拟机"></a>深入理解java虚拟机</h3><p>2017-4月 读完</p>
 
       
 
@@ -625,7 +711,7 @@ ga('send', 'pageview');
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/sublime/" class="article-tag-list-link color3">sublime</a>
+        			<a href="/categories/tools/" class="article-tag-list-link color1">tools</a>
         		</li>
       		
 		</ul>
